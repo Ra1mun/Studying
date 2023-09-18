@@ -1,2 +1,0 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(79,3): error : Не удается найти пакет SDK для .NET. Убедитесь, что пакет установлен и версия, указанная в файле global.json (если он имеется), соответствует установленной.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(79,11): error MSB4236: не удалось найти указанный пакет SDK "Microsoft.NET.Sdk".
