@@ -1,3 +1,0 @@
-D:\TSULabs\Studying\ООП\Lab1\Lab1\Debug\Lab1.vcxproj.AssemblyReference.cache
-D:\TSULabs\Studying\ООП\Lab1\Lab1\Debug\Lab1.MyForm.resources
-D:\TSULabs\Studying\ООП\Lab1\Lab1\Debug\Lab1.vcxproj.GenerateResource.cache
