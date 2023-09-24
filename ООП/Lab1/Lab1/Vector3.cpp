@@ -1,5 +1,11 @@
 #include "Vector3.h"
 
+Vector3::Vector3() {
+	point1 = 0;
+	point2 = 0;
+	point3 = 0;
+	length = 0;
+}
 
 Vector3::Vector3(const double point1 = 0, const double point2 = 0, const double point3 = 0)
 {
@@ -14,43 +20,24 @@ double Vector3::GetLength()
 	return length;
 }
 
-double Vector3::GetNormolized()
+Vector3 Vector3::GetNormolized()
 {
-	return 0.0f;
+	return Vector3(point1 / length, point2 / length, point3 / length);
 }
 
-Vector3 Vector3::operator+=(Vector3)
+double Vector3::OutPutPoint1()
 {
-	return Vector3();
+	return point1;
 }
 
-Vector3 Vector3::operator-=(Vector3)
+double Vector3::OutPutPoint2()
 {
-	return Vector3();
+	return point2;
 }
 
-Vector3 Vector3::operator*=(int)
+double Vector3::OutPutPoint3()
 {
-	return Vector3();
+	return point3;
 }
 
-Vector3 Vector3::operator==(Vector3)
-{
-	return Vector3();
-}
-
-Vector3 Vector3::operator^=(Vector3)
-{
-	return Vector3();
-}
-
-Vector3 Vector3::GetCross(Vector3, Vector3)
-{
-	return Vector3();
-}
-
-Vector3 Vector3::GetTriple(Vector3, Vector3, Vector3)
-{
-	return Vector3();
-}
 
