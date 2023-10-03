@@ -71,5 +71,9 @@ Vector3 Vector3::GetCross(Vector3 a, Vector3 b)
 		a.point3 * b.point1 - a.point1 * b.point3,
 		a.point1 * b.point2 - a.point2 * b.point1);
 }
+double Vector3::GetMixed(Vector3 a, Vector3 b, Vector3 c) {
+	return (a.point1 * b.point2 * c.point3) + (a.point2 * b.point3 * c.point1) + (a.point3 * b.point1 * c.point2)
+		- (a.point3 * b.point2 * c.point1) - (a.point2 * b.point1 * c.point3) - (a.point1 * b.point3 * c.point2);
+}
 
 

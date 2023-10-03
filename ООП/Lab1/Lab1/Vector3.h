@@ -22,4 +22,5 @@ public:
 	bool operator== (Vector3);
 	double operator^(Vector3);
 	Vector3 GetCross(Vector3, Vector3);
+	double GetMixed(Vector3, Vector3, Vector3);
 };

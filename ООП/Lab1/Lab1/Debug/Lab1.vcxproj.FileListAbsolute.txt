@@ -1,3 +1,6 @@
 D:\Lab1\Lab1\Debug\Lab1.MyForm.resources
 D:\Lab1\Lab1\Debug\Lab1.vcxproj.GenerateResource.cache
 D:\Lab1\Lab1\Debug\Lab1.vcxproj.AssemblyReference.cache
+C:\Studying\ООП\Lab1\Lab1\Debug\Lab1.vcxproj.AssemblyReference.cache
+C:\Studying\ООП\Lab1\Lab1\Debug\Lab1.MyForm.resources
+C:\Studying\ООП\Lab1\Lab1\Debug\Lab1.vcxproj.GenerateResource.cache
