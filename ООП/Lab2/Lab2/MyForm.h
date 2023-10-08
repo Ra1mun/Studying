@@ -1,9 +1,6 @@
 #pragma once
 
-#include "Array.h"
-
 namespace Lab2 {
-
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -132,6 +129,7 @@ namespace Lab2 {
 			this->AddElementButton->TabIndex = 1;
 			this->AddElementButton->Text = L"результат";
 			this->AddElementButton->UseVisualStyleBackColor = true;
+			this->AddElementButton->Click += gcnew System::EventHandler(this, &MyForm::AddElementButton_Click);
 			// 
 			// DeleteElementButton
 			// 
@@ -199,11 +197,11 @@ namespace Lab2 {
 			this->AddElementLabel->AutoSize = true;
 			this->AddElementLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->AddElementLabel->Location = System::Drawing::Point(17, 144);
+			this->AddElementLabel->Location = System::Drawing::Point(9, 143);
 			this->AddElementLabel->Name = L"AddElementLabel";
-			this->AddElementLabel->Size = System::Drawing::Size(137, 16);
+			this->AddElementLabel->Size = System::Drawing::Size(145, 16);
 			this->AddElementLabel->TabIndex = 9;
-			this->AddElementLabel->Text = L"число элементов";
+			this->AddElementLabel->Text = L"добавить элемент";
 			// 
 			// AddElementTextBox
 			// 
@@ -217,11 +215,11 @@ namespace Lab2 {
 			this->DeleteElementLabel->AutoSize = true;
 			this->DeleteElementLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->DeleteElementLabel->Location = System::Drawing::Point(17, 202);
+			this->DeleteElementLabel->Location = System::Drawing::Point(18, 201);
 			this->DeleteElementLabel->Name = L"DeleteElementLabel";
-			this->DeleteElementLabel->Size = System::Drawing::Size(137, 16);
+			this->DeleteElementLabel->Size = System::Drawing::Size(136, 16);
 			this->DeleteElementLabel->TabIndex = 11;
-			this->DeleteElementLabel->Text = L"число элементов";
+			this->DeleteElementLabel->Text = L"удалить элемент";
 			// 
 			// DeleteElementTextBox
 			// 
@@ -252,11 +250,11 @@ namespace Lab2 {
 			this->DeleteIndexLabel->AutoSize = true;
 			this->DeleteIndexLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->DeleteIndexLabel->Location = System::Drawing::Point(17, 260);
+			this->DeleteIndexLabel->Location = System::Drawing::Point(16, 260);
 			this->DeleteIndexLabel->Name = L"DeleteIndexLabel";
-			this->DeleteIndexLabel->Size = System::Drawing::Size(137, 16);
+			this->DeleteIndexLabel->Size = System::Drawing::Size(138, 16);
 			this->DeleteIndexLabel->TabIndex = 15;
-			this->DeleteIndexLabel->Text = L"число элементов";
+			this->DeleteIndexLabel->Text = L"удалить позицию";
 			// 
 			// DeleteIndexTextBox
 			// 
@@ -325,8 +323,11 @@ namespace Lab2 {
 
 		}
 #pragma endregion
+	/*private:
+		CustomArray* array;*/
 #pragma region ButtonActions
 	private: System::Void CreateMassiveButton_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void AddElementButton_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void DeleteElementButton_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void DeleteIndexButton_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void SortMassiveButton_Click(System::Object^ sender, System::EventArgs^ e);

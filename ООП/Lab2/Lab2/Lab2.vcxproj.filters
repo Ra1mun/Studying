@@ -18,7 +18,7 @@
     <ClCompile Include="MyForm.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Array.cpp">
+    <ClCompile Include="CustomArray.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -26,7 +26,7 @@
     <ClInclude Include="MyForm.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="Array.h">
+    <ClInclude Include="CustomArray.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>

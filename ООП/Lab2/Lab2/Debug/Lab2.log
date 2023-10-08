@@ -1,0 +1,6 @@
+﻿  CustomArray.cpp
+D:\TSULabs\Studying\ООП\Lab2\Lab2\CustomArray.cpp(11,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\TSULabs\Studying\ООП\Lab2\Lab2\CustomArray.cpp(69,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\TSULabs\Studying\ООП\Lab2\Lab2\CustomArray.cpp(184): warning C4172: возвращение адреса локальной или временной переменной
+  CustomArray.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  Lab2.vcxproj -> D:\TSULabs\Studying\ООП\Lab2\Debug\Lab2.exe

@@ -118,11 +118,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Array.cpp" />
+    <ClCompile Include="CustomArray.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Array.h" />
+    <ClInclude Include="CustomArray.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
