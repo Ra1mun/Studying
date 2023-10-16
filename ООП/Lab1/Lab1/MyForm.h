@@ -968,7 +968,7 @@ namespace Lab1 {
 		Vector3 vector1(v1->GetPoint1(), v1->GetPoint2(), v1->GetPoint3());
 		Vector3 vector2(v2->GetPoint1(), v2->GetPoint2(), v2->GetPoint3());
 		Vector3 vector3(v3->GetPoint1(), v3->GetPoint2(), v3->GetPoint3());
-		c = c.GetCross(vector1, vector2);
+		c = c.GetCross(vector1, vector2); // v3 ^ (v1 * v2)
 		double k = vector3 ^ c;
 
 		TripleTextBox->Text = k.ToString();

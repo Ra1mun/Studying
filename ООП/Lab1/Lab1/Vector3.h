@@ -4,9 +4,9 @@
 
 class Vector3 {
 private:
-	double point1;
-	double point2;
-	double point3;
+	double X;
+	double Y;
+	double Z;
 	double length;
 public:
 	Vector3();
@@ -16,7 +16,7 @@ public:
 	double GetPoint1();
 	double GetPoint2();
 	double GetPoint3();
-	Vector3 operator+ (Vector3);
+	Vector3 operator+ (const Vector3&) const;
 	Vector3 operator- (Vector3);
 	Vector3 operator* (int);
 	bool operator== (Vector3);
