@@ -3,7 +3,8 @@
 template<typename T>
 Array<T>::Array()
 {
-	arr = new T[1]; n = 1;
+	arr = nullptr;
+	n = 0;
 }
 template<typename T>
 Array<T>::Array(int m)
@@ -50,7 +51,7 @@ Array<T>::~Array()
 }
 
 template<typename T>
-int& Array<T>::operator[](int i)
+T& Array<T>::operator[](int i)
 {
 	if (i < 0)
 		return arr[0];
@@ -60,9 +61,27 @@ int& Array<T>::operator[](int i)
 }
 
 template<typename T>
-int Array<T>::FindKey(int key)
+void Array<T>::Scan(int m)
 {
+	n = m;
+	arr = new int[n];
+	for(int i = 0; i < n; i++)
+	{
+		cin >> a[i];
+	}
+}
 
+template<typename T>
+void Array<T>::Print()
+{
+	for (int i = 0; i < n; i++)
+		cout << a[i] << ' ';
+	cout << endl;
+}
+
+template<typename T>
+int Array<T>::FindKey(T key)
+{
 	for (int i = 0; i < n; i++)
 		if (arr[i] == key)
 			return i;
@@ -71,9 +90,9 @@ int Array<T>::FindKey(int key)
 }
 
 template<typename T>
-Array<T>& Array<T>::operator+=(int key)
+Array<T>& Array<T>::operator+=(T key)
 {
-	int* t;
+	T* t;
 	t = new T[n + 1];
 	for (int i = 0; i < n; i++)
 		t[i] = arr[i];
@@ -85,7 +104,7 @@ Array<T>& Array<T>::operator+=(int key)
 }
 
 template<typename T>
-Array<T> Array<T>::operator+(int key)
+Array<T> Array<T>::operator+(T key)
 {
 	Array Res(arr, n + 1);
 	Res += key;
@@ -95,7 +114,7 @@ Array<T> Array<T>::operator+(int key)
 template<typename T>
 Array<T>& Array<T>::operator+=(Array copyArray)
 {
-	int* t;
+	T* t;
 	t = new int[n + copyArray.n];
 	for (int i = 0; i < n; i++)
 		t[i] = arr[i];
@@ -119,13 +138,13 @@ Array<T> Array<T>::operator+(Array copyArray)
 }
 
 template<typename T>
-Array<T>& Array<T>::operator-=(int key)
+Array<T>& Array<T>::operator-=(T key)
 {
 	return DelPosEq(FindKey(key));
 }
 
 template<typename T>
-Array<T> Array<T>::operator-(int key)
+Array<T> Array<T>::operator-(T key)
 {
 	return DelPosNew(FindKey(key));
 }
@@ -136,8 +155,8 @@ Array<T>& Array<T>::DelPosEq(int pos)
 	if (pos > n || pos < 0)
 		return *this;
 
-	int* t;
-	t = new int[n - 1];
+	T* t;
+	t = new T[n - 1];
 	for (int i = 0; i < pos - 1; i++)
 		t[i] = arr[i];
 	for (int i = pos; i < n; i++)
@@ -234,3 +253,26 @@ void Array<T>::Sorting()
 	}
 }
 
+template<typename T>
+ostream& operator<<(ostream& r, Array<T>& x)
+{
+	for (int i = 0; i < x.n; i++) {
+		r << x.a[i] << " ";
+	}
+	return r;
+
+}
+
+template<typename T>
+istream& operator>>(istream& r, Array<T>& x)
+{
+	cout << "Введите количество элементов в массиве: ";
+	r >> x.n;
+	x.a = new T[x.n];
+	for (int i = 0; i < x.n; i++) {
+		cout << "Введите элемент " << i << ": ";
+		r >> x.a[i];
+	}
+	return r;
+
+}

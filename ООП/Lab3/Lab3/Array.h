@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <string>
 #include <ctime>
 
@@ -16,14 +17,16 @@ public:
 	Array(const Array& x);
 	Array& operator = (const Array& x);
 	~Array();
-	int& operator [] (int i);
-	int FindKey(int key);
-	Array& operator += (int key);
-	Array operator + (int key);
+	T& operator [] (int i);
+	void Scan(int m);
+	void Print();
+	int FindKey(T);
+	Array& operator += (T);
+	Array operator + (T);
 	Array& operator += (Array);
 	Array operator + (Array);
-	Array& operator -= (int key);
-	Array operator - (int key);
+	Array& operator -= (T);
+	Array operator - (T);
 	Array& DelPosEq(int pos);
 	Array DelPosNew(int pos);
 	bool operator == (Array);
@@ -31,4 +34,6 @@ public:
 	int Max();
 	int Min();
 	void Sorting();
+	friend ostream& operator<<(ostream& r, Array& x);
+	friend istream& operator>>(istream& r, Array& x);
 };
