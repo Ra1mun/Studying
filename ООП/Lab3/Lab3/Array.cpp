@@ -1,19 +1,19 @@
 #include "Array.h"
 
-template<typename T>
+template<class T>
 Array<T>::Array()
 {
-	arr = nullptr;
+	arr = new T[0];
 	n = 0;
 }
-template<typename T>
+template<class T>
 Array<T>::Array(int m)
 {
 	n = m;
 	arr = new T[n];
 }
 
-template<typename T>
+template<class T>
 Array<T>::Array(T* b, int m)
 {
 	n = m;
@@ -21,8 +21,9 @@ Array<T>::Array(T* b, int m)
 	for (int i = 0; i < n; i++)
 		arr[i] = b[i];
 }
-template<typename T>
-Array<T>::Array(const Array<T>& x)
+
+template<class T>
+Array<T>::Array(const Array& x)
 {
 	n = x.n;
 	arr = new T[n];
@@ -30,7 +31,7 @@ Array<T>::Array(const Array<T>& x)
 		arr[i] = x.arr[i];
 }
 
-template<typename T>
+template<class T>
 Array<T>& Array<T>::operator=(const Array& x)
 {
 	if (this == &x)
@@ -44,13 +45,13 @@ Array<T>& Array<T>::operator=(const Array& x)
 	return *this;
 }
 
-template<typename T>
+template<class T>
 Array<T>::~Array()
 {
 	delete[]arr;
 }
 
-template<typename T>
+template<class T>
 T& Array<T>::operator[](int i)
 {
 	if (i < 0)
@@ -60,26 +61,26 @@ T& Array<T>::operator[](int i)
 	return arr[i];
 }
 
-template<typename T>
+template<class T>
 void Array<T>::Scan(int m)
 {
 	n = m;
-	arr = new int[n];
+	arr = new T[n];
 	for(int i = 0; i < n; i++)
 	{
-		cin >> a[i];
+		cin >> arr[i];
 	}
 }
 
-template<typename T>
+template<class T>
 void Array<T>::Print()
 {
 	for (int i = 0; i < n; i++)
-		cout << a[i] << ' ';
+		cout << arr[i] << ' ';
 	cout << endl;
 }
 
-template<typename T>
+template<class T>
 int Array<T>::FindKey(T key)
 {
 	for (int i = 0; i < n; i++)
@@ -89,7 +90,7 @@ int Array<T>::FindKey(T key)
 	return -1;
 }
 
-template<typename T>
+template<class T>
 Array<T>& Array<T>::operator+=(T key)
 {
 	T* t;
@@ -103,7 +104,7 @@ Array<T>& Array<T>::operator+=(T key)
 	return *this;
 }
 
-template<typename T>
+template<class T>
 Array<T> Array<T>::operator+(T key)
 {
 	Array Res(arr, n + 1);
@@ -111,7 +112,7 @@ Array<T> Array<T>::operator+(T key)
 	return Res;
 }
 
-template<typename T>
+template<class T>
 Array<T>& Array<T>::operator+=(Array copyArray)
 {
 	T* t;
@@ -126,30 +127,27 @@ Array<T>& Array<T>::operator+=(Array copyArray)
 	return *this;
 }
 
-template<typename T>
+template<class T>
 Array<T> Array<T>::operator+(Array copyArray)
 {
-	Array Res(n + copyArray.n);
-	for (int i = 0; i < n; i++)
-		Res.arr[i] = arr[i];
-	for (int i = 0; i < n; i++)
-		Res[n + i] = copyArray.arr[i];
+	Array Res(arr, n);
+	Res += copyArray;
 	return Res;
 }
 
-template<typename T>
+template<class T>
 Array<T>& Array<T>::operator-=(T key)
 {
 	return DelPosEq(FindKey(key));
 }
 
-template<typename T>
+template<class T>
 Array<T> Array<T>::operator-(T key)
 {
 	return DelPosNew(FindKey(key));
 }
 
-template<typename T>
+template<class T>
 Array<T>& Array<T>::DelPosEq(int pos)
 {
 	if (pos > n || pos < 0)
@@ -168,7 +166,7 @@ Array<T>& Array<T>::DelPosEq(int pos)
 	return *this;
 }
 
-template<typename T>
+template<class T>
 Array<T> Array<T>::DelPosNew(int pos)
 {
 	if (pos > n || pos < 0)
@@ -183,35 +181,26 @@ Array<T> Array<T>::DelPosNew(int pos)
 	return Res;
 }
 
-template<typename T>
+template<class T>
 bool Array<T>::operator==(Array copyArray)
 {
 	if (n != copyArray.n)
 		return false;
 
 	for (int i = 0; i < n; i++)
-	{
 		if (arr[i] != copyArray.arr[i])
 			return false;
-	}
+
 	return true;
 }
 
-template<typename T>
+template<class T>
 bool Array<T>::operator!=(Array copyArray)
 {
-	if (n != copyArray.n)
-		return true;
-
-	for (int i = 0; i < n; i++)
-	{
-		if (arr[i] != copyArray.arr[i])
-			return true;
-	}
-	return false;
+	return !(*this == copyArray);
 }
 
-template<typename T>
+template<class T>
 int Array<T>::Max()
 {
 	int max = arr[0];
@@ -223,7 +212,7 @@ int Array<T>::Max()
 	return max;
 }
 
-template<typename T>
+template<class T>
 int Array<T>::Min()
 {
 	int min = arr[0];
@@ -235,7 +224,7 @@ int Array<T>::Min()
 	return min;
 }
 
-template<typename T>
+template<class T>
 void Array<T>::Sorting()
 {
 	int temp{};
@@ -253,26 +242,3 @@ void Array<T>::Sorting()
 	}
 }
 
-template<typename T>
-ostream& operator<<(ostream& r, Array<T>& x)
-{
-	for (int i = 0; i < x.n; i++) {
-		r << x.a[i] << " ";
-	}
-	return r;
-
-}
-
-template<typename T>
-istream& operator>>(istream& r, Array<T>& x)
-{
-	cout << "Введите количество элементов в массиве: ";
-	r >> x.n;
-	x.a = new T[x.n];
-	for (int i = 0; i < x.n; i++) {
-		cout << "Введите элемент " << i << ": ";
-		r >> x.a[i];
-	}
-	return r;
-
-}

@@ -1,10 +1,7 @@
 #pragma once
 #include <iostream>
-#include <string>
-#include <ctime>
-
 using namespace std;
-template <typename T>
+template <class T>
 class Array
 {
 private:
@@ -34,6 +31,5 @@ public:
 	int Max();
 	int Min();
 	void Sorting();
-	friend ostream& operator<<(ostream& r, Array& x);
-	friend istream& operator>>(istream& r, Array& x);
 };
+#include "Array.cpp"

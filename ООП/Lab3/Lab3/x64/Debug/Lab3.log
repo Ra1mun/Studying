@@ -1,0 +1,49 @@
+﻿  Array.cpp
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(4,11): error C2995: Array<T>::Array(void): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(11,2): message : см. объявление "Array<T>::Array"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(10,11): error C2995: Array<T>::Array(int): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(12,2): message : см. объявление "Array<T>::Array"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(17,11): error C2995: Array<T>::Array(T *,int): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(13,2): message : см. объявление "Array<T>::Array"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(26,11): error C2995: Array<T>::Array(const Array<T> &): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(14,2): message : см. объявление "Array<T>::Array"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(35,21): error C2995: Array<T> &Array<T>::operator =(const Array<T> &): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(15,9): message : см. объявление "Array<T>::operator ="
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(49,12): error C2995: Array<T>::~Array(void): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(16,3): message : см. объявление "Array<T>::~Array"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(55,14): error C2995: T &Array<T>::operator [](int): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(17,5): message : см. объявление "Array<T>::operator []"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(65,16): error C2995: void Array<T>::Scan(int): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(18,7): message : см. объявление "Array<T>::Scan"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(76,16): error C2995: void Array<T>::Print(void): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(19,7): message : см. объявление "Array<T>::Print"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(84,15): error C2995: int Array<T>::FindKey(T): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(20,6): message : см. объявление "Array<T>::FindKey"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(94,21): error C2995: Array<T> &Array<T>::operator +=(T): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(21,9): message : см. объявление "Array<T>::operator +="
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(108,20): error C2995: Array<T> Array<T>::operator +(T): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(22,8): message : см. объявление "Array<T>::operator +"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(116,21): error C2995: Array<T> &Array<T>::operator +=(Array<T>): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(23,9): message : см. объявление "Array<T>::operator +="
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(131,20): error C2995: Array<T> Array<T>::operator +(Array<T>): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(24,8): message : см. объявление "Array<T>::operator +"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(139,21): error C2995: Array<T> &Array<T>::operator -=(T): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(25,9): message : см. объявление "Array<T>::operator -="
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(145,20): error C2995: Array<T> Array<T>::operator -(T): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(26,8): message : см. объявление "Array<T>::operator -"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(151,21): error C2995: Array<T> &Array<T>::DelPosEq(int): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(27,9): message : см. объявление "Array<T>::DelPosEq"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(170,20): error C2995: Array<T> Array<T>::DelPosNew(int): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(28,8): message : см. объявление "Array<T>::DelPosNew"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(185,16): error C2995: bool Array<T>::operator ==(Array<T>): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(29,7): message : см. объявление "Array<T>::operator =="
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(198,16): error C2995: bool Array<T>::operator !=(Array<T>): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(30,7): message : см. объявление "Array<T>::operator !="
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(204,15): error C2995: int Array<T>::Max(void): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(31,6): message : см. объявление "Array<T>::Max"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(216,15): error C2995: int Array<T>::Min(void): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(32,6): message : см. объявление "Array<T>::Min"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(228,16): error C2995: void Array<T>::Sorting(void): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.h(33,7): message : см. объявление "Array<T>::Sorting"
+  Lab3.cpp
+  Создание кода...
