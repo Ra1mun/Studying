@@ -1,0 +1,16 @@
+D:\TSU\Studying\ВычМат\Lab5\Lab5\bin\Debug\net7.0-windows\Lab5.exe
+D:\TSU\Studying\ВычМат\Lab5\Lab5\bin\Debug\net7.0-windows\Lab5.deps.json
+D:\TSU\Studying\ВычМат\Lab5\Lab5\bin\Debug\net7.0-windows\Lab5.runtimeconfig.json
+D:\TSU\Studying\ВычМат\Lab5\Lab5\bin\Debug\net7.0-windows\Lab5.dll
+D:\TSU\Studying\ВычМат\Lab5\Lab5\bin\Debug\net7.0-windows\Lab5.pdb
+D:\TSU\Studying\ВычМат\Lab5\Lab5\obj\Debug\net7.0-windows\Lab5.Form1.resources
+D:\TSU\Studying\ВычМат\Lab5\Lab5\obj\Debug\net7.0-windows\Lab5.csproj.GenerateResource.cache
+D:\TSU\Studying\ВычМат\Lab5\Lab5\obj\Debug\net7.0-windows\Lab5.GeneratedMSBuildEditorConfig.editorconfig
+D:\TSU\Studying\ВычМат\Lab5\Lab5\obj\Debug\net7.0-windows\Lab5.AssemblyInfoInputs.cache
+D:\TSU\Studying\ВычМат\Lab5\Lab5\obj\Debug\net7.0-windows\Lab5.AssemblyInfo.cs
+D:\TSU\Studying\ВычМат\Lab5\Lab5\obj\Debug\net7.0-windows\Lab5.csproj.CoreCompileInputs.cache
+D:\TSU\Studying\ВычМат\Lab5\Lab5\obj\Debug\net7.0-windows\Lab5.dll
+D:\TSU\Studying\ВычМат\Lab5\Lab5\obj\Debug\net7.0-windows\refint\Lab5.dll
+D:\TSU\Studying\ВычМат\Lab5\Lab5\obj\Debug\net7.0-windows\Lab5.pdb
+D:\TSU\Studying\ВычМат\Lab5\Lab5\obj\Debug\net7.0-windows\Lab5.genruntimeconfig.cache
+D:\TSU\Studying\ВычМат\Lab5\Lab5\obj\Debug\net7.0-windows\ref\Lab5.dll
