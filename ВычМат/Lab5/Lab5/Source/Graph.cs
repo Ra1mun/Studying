@@ -10,15 +10,15 @@ namespace Lab5.Source
     public class Graph
     {
         //Пикселей в одном делении оси
-        const int PIX_IN_ONE = 15;
+        const int PIX_IN_ONE = 10;
         //Длина стрелки
         const int ARR_LEN = 5;
         //Масштаб
-        const float SCALE = 1.25f;
+        const float SCALE = 2f;
         private readonly int _weight;
         private readonly int _height;
         private readonly float _step;
-        private readonly Task _newtonMethod;
+        private readonly FunctionHolder _functionHolder;
         private readonly PictureBox _pictureBox;
         private readonly Pen _pen;
 
@@ -26,10 +26,10 @@ namespace Lab5.Source
         private int y0;
 
         public Graph(int weight, int height, float step,
-            Task newtonMethod, PictureBox pictureBox,
+            FunctionHolder functionHolder, PictureBox pictureBox,
             Pen pen)
         {
-            _newtonMethod = newtonMethod;
+            _functionHolder = functionHolder;
             _weight = weight;
             _height = height;
 
@@ -52,10 +52,10 @@ namespace Lab5.Source
         }
         private void DrawFunction(Graphics graphics)
         {
-            var previous = new PointF(0, _newtonMethod.GetFunction(0));
-            for(var i = 1; i <= 250; i++)
+            var previous = new PointF(0, _functionHolder.GetFunction(0));
+            for(var i = -100; i <= 30; i++)
             {
-                var current = new PointF(i*_step, _newtonMethod.GetFunction(i * _step));
+                var current = new PointF(i*_step, _functionHolder.GetFunction(i * _step));
                 graphics.DrawLine(_pen, previous, current);
                 previous = current;
             }
@@ -67,7 +67,7 @@ namespace Lab5.Source
             var end = new Point(x0, 0);
             for (int i = PIX_IN_ONE; i < end.X - ARR_LEN; i += PIX_IN_ONE)
             {
-                graphics.DrawLine(_pen, i, -2, i, 2);
+                graphics.DrawLine(_pen, i, -1, i, 1);
                 DrawText(new Point(i, 5), (i / PIX_IN_ONE).ToString(), graphics);
             }
             //Деления в отрицательном направлении оси

@@ -45,14 +45,11 @@
             IntervalListBox = new ListBox();
             IntervalButton = new Button();
             SolutionButton = new Button();
-            StepLabel = new Label();
-            StepTextBox = new TextBox();
-            EndLabel = new Label();
-            EndTextBox = new TextBox();
-            Answer1TextBox = new ListBox();
             NewtonLabel = new Label();
-            label5 = new Label();
-            listBox1 = new ListBox();
+            ShodimLabel = new Label();
+            ShodButton = new Button();
+            MethodListBox = new ListBox();
+            ShodListBox = new ListBox();
             ((System.ComponentModel.ISupportInitialize)GraphicBox).BeginInit();
             SuspendLayout();
             // 
@@ -69,9 +66,9 @@
             // GraphicBox
             // 
             GraphicBox.BackColor = SystemColors.Control;
-            GraphicBox.Location = new Point(584, 193);
+            GraphicBox.Location = new Point(528, 193);
             GraphicBox.Name = "GraphicBox";
-            GraphicBox.Size = new Size(407, 228);
+            GraphicBox.Size = new Size(463, 228);
             GraphicBox.TabIndex = 1;
             GraphicBox.TabStop = false;
             // 
@@ -195,96 +192,71 @@
             // 
             // SolutionButton
             // 
-            SolutionButton.Location = new Point(528, 157);
+            SolutionButton.Location = new Point(184, 157);
             SolutionButton.Name = "SolutionButton";
             SolutionButton.Size = new Size(120, 23);
             SolutionButton.TabIndex = 20;
             SolutionButton.Text = "Решить уравнение";
             SolutionButton.UseVisualStyleBackColor = true;
-            SolutionButton.Click += button2_Click;
-            // 
-            // StepLabel
-            // 
-            StepLabel.AutoSize = true;
-            StepLabel.Location = new Point(356, 139);
-            StepLabel.Name = "StepLabel";
-            StepLabel.Size = new Size(135, 15);
-            StepLabel.TabIndex = 24;
-            StepLabel.Text = "Введите значение шага";
-            // 
-            // StepTextBox
-            // 
-            StepTextBox.Location = new Point(356, 157);
-            StepTextBox.Name = "StepTextBox";
-            StepTextBox.Size = new Size(166, 23);
-            StepTextBox.TabIndex = 23;
-            // 
-            // EndLabel
-            // 
-            EndLabel.AutoSize = true;
-            EndLabel.Location = new Point(184, 139);
-            EndLabel.Name = "EndLabel";
-            EndLabel.Size = new Size(160, 15);
-            EndLabel.TabIndex = 22;
-            EndLabel.Text = "Введите конечное значение";
-            // 
-            // EndTextBox
-            // 
-            EndTextBox.Location = new Point(184, 157);
-            EndTextBox.Name = "EndTextBox";
-            EndTextBox.Size = new Size(166, 23);
-            EndTextBox.TabIndex = 21;
-            // 
-            // Answer1TextBox
-            // 
-            Answer1TextBox.FormattingEnabled = true;
-            Answer1TextBox.ItemHeight = 15;
-            Answer1TextBox.Location = new Point(12, 222);
-            Answer1TextBox.Name = "Answer1TextBox";
-            Answer1TextBox.Size = new Size(215, 199);
-            Answer1TextBox.TabIndex = 25;
+            SolutionButton.Click += MethodButton_Click;
             // 
             // NewtonLabel
             // 
             NewtonLabel.AutoSize = true;
-            NewtonLabel.Location = new Point(12, 204);
+            NewtonLabel.Location = new Point(309, 139);
             NewtonLabel.Name = "NewtonLabel";
             NewtonLabel.Size = new Size(213, 15);
             NewtonLabel.TabIndex = 27;
             NewtonLabel.Text = "Модифицированный метод Ньютона";
             // 
-            // label5
+            // ShodimLabel
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(233, 204);
-            label5.Name = "label5";
-            label5.Size = new Size(213, 15);
-            label5.TabIndex = 29;
-            label5.Text = "Модифицированный метод Ньютона";
+            ShodimLabel.AutoSize = true;
+            ShodimLabel.Location = new Point(12, 196);
+            ShodimLabel.Name = "ShodimLabel";
+            ShodimLabel.Size = new Size(145, 15);
+            ShodimLabel.TabIndex = 29;
+            ShodimLabel.Text = "Проверка на сходимость";
             // 
-            // listBox1
+            // ShodButton
             // 
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(233, 222);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(215, 199);
-            listBox1.TabIndex = 28;
+            ShodButton.Location = new Point(163, 211);
+            ShodButton.Name = "ShodButton";
+            ShodButton.Size = new Size(120, 26);
+            ShodButton.TabIndex = 31;
+            ShodButton.Text = "Проверить";
+            ShodButton.UseVisualStyleBackColor = true;
+            ShodButton.Click += ShodButton_Click;
+            // 
+            // MethodListBox
+            // 
+            MethodListBox.FormattingEnabled = true;
+            MethodListBox.ItemHeight = 15;
+            MethodListBox.Location = new Point(309, 162);
+            MethodListBox.Name = "MethodListBox";
+            MethodListBox.Size = new Size(213, 49);
+            MethodListBox.TabIndex = 32;
+            // 
+            // ShodListBox
+            // 
+            ShodListBox.FormattingEnabled = true;
+            ShodListBox.ItemHeight = 15;
+            ShodListBox.Location = new Point(12, 226);
+            ShodListBox.Name = "ShodListBox";
+            ShodListBox.Size = new Size(145, 109);
+            ShodListBox.TabIndex = 33;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.HotTrack;
+            BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(1003, 473);
-            Controls.Add(label5);
-            Controls.Add(listBox1);
+            Controls.Add(ShodListBox);
+            Controls.Add(MethodListBox);
+            Controls.Add(ShodButton);
+            Controls.Add(ShodimLabel);
             Controls.Add(NewtonLabel);
-            Controls.Add(Answer1TextBox);
-            Controls.Add(StepLabel);
-            Controls.Add(StepTextBox);
-            Controls.Add(EndLabel);
-            Controls.Add(EndTextBox);
             Controls.Add(SolutionButton);
             Controls.Add(IntervalButton);
             Controls.Add(IntervalListBox);
@@ -328,13 +300,10 @@
         private ListBox IntervalListBox;
         private Button IntervalButton;
         private Button SolutionButton;
-        private Label StepLabel;
-        private TextBox StepTextBox;
-        private Label EndLabel;
-        private TextBox EndTextBox;
-        private ListBox Answer1TextBox;
         private Label NewtonLabel;
-        private Label label5;
-        private ListBox listBox1;
+        private Label ShodimLabel;
+        private Button ShodButton;
+        private ListBox MethodListBox;
+        private ListBox ShodListBox;
     }
 }
