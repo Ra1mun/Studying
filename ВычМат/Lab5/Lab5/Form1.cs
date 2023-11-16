@@ -13,14 +13,6 @@ namespace Lab5
             InitializeComponent();
         }
 
-        private void CreateGraphicButton_Click(object sender, EventArgs e)
-        {
-            var graph = new Graph(GraphicBox.Size.Width, GraphicBox.Size.Height, 0.5f, new Source.FunctionHolder(),
-                GraphicBox, new Pen(Color.Black, 1f));
-
-            graph.DrawGraph();
-        }
-
         private void IntervalButton_Click(object sender, EventArgs e)
         {
             IntervalListBox.Items.Clear();
@@ -44,6 +36,7 @@ namespace Lab5
                 previousFunction = currentFunction;
                 currentFunction = functionHolder.GetFunction(i);
             }
+            IntervalListBox.Items.Add($"Сходимость : {Convergant}");
         }
 
         private void MethodButton_Click(object sender, EventArgs e)
@@ -55,7 +48,7 @@ namespace Lab5
             {
                 var eps = 0.01 * Math.Pow(0.1, i);
                 ModifyNewthonMethod(Convert.ToDouble(NearbyValueTextBox.Text), eps);
-                IterationMethod(Convert.ToDouble(StartValuetextBox.Text), Convert.ToDouble(EndValueTextBox.Text), eps);
+                NewthonMethod(Convert.ToDouble(NearbyValueTextBox.Text), eps);
             }
 
         }
@@ -83,33 +76,51 @@ namespace Lab5
             MethodListBox.Items.Add($"Точность решения: {eps}");
         }
 
-        private void IterationMethod(double a, double b, double eps)
+        private void NewthonMethod(double x, double eps)
         {
             var functionHolder = new Source.FunctionHolder();
-            var start = (float)a;
-            var end = (float)b;
-            int k = 0;
-            if(functionHolder.GetFunction(start) * functionHolder.GetFunction(end) <= 0)
+            var x0 = (float)x;
+            int iteration = 0;
+            var x1 = x0 - (functionHolder.GetFunction(x0) / functionHolder.GetDifferential(x0));
+
+            while (Math.Abs(x1 - x0) > eps)
             {
-                while (Math.Abs(start - end) > eps)
-                {
-                    var c = (start + end) / 2;
-                    if (functionHolder.GetFunction(start) * functionHolder.GetFunction(c) < 0)
-                    {
-                        start = c;
-                    }
-                    else
-                    {
-                        end = c;
-                    }
-                    k++;
-                }
+                x0 = x1;
+                x1 -= (functionHolder.GetFunction(x0) / functionHolder.GetDifferential(x0));
+                iteration++;
             }
-            var x1 = (start - end) / 2;
 
             Method2ListBox.Items.Add($"Корень {x1}");
-            Method2ListBox.Items.Add($"Количество итераций {k}");
+            Method2ListBox.Items.Add($"Количество итераций {iteration}");
             Method2ListBox.Items.Add($"Точность решения: {eps}");
+            Method2ListBox.Items.Add($"Оценка точности: {CalculateAccureacy(x1, MinFunction(Convert.ToDouble(StartIntervalTextBox.Text),
+                Convert.ToDouble(EndIntervalTextBox.Text), Convert.ToDouble(StepIntervalTextBox.Text)))}");
+        }
+
+        private bool Convergant(double a, double b, double x0)
+        {
+            var functionHolder = new FunctionHolder();
+            return functionHolder.GetFunction(a) * functionHolder.GetFunction(b) < 0 &&
+                functionHolder.GetFunction(x0) * functionHolder.Get2Differential((float)x0) > 0;
+        }
+        private float CalculateAccureacy(float root, float min)
+        {
+            var functionHodler = new FunctionHolder();
+            return (float)Math.Abs(functionHodler.GetFunction(root)) / min;
+        }
+
+        private float MinFunction(double a, double b, double step)
+        {
+            var functionHolder = new FunctionHolder();
+            var min = functionHolder.GetFunction(a);
+            for (var i = a; i < b; i = i + step)
+            {
+                if (min > functionHolder.GetFunction(i))
+                {
+                    min = functionHolder.GetFunction(i);
+                }
+            }
+            return min;
         }
     }
 }

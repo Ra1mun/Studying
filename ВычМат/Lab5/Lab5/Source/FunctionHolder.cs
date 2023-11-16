@@ -12,5 +12,11 @@
             var diff = 0.000001f;
             return (GetFunction(x + diff) - GetFunction(x - diff)) / (2 * diff);
         }
+
+        public float Get2Differential(float x)
+        {
+            var diff = 0.000001f;
+            return (GetDifferential(x + diff) - GetDifferential(x - diff)) / (2 * diff);
+        }
     }
 }

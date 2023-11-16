@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            LoadGraphicForm = new Button();
-            GraphicBox = new PictureBox();
             IntervalLabel = new Label();
             StartIntervalTextBox = new TextBox();
             label1 = new Label();
@@ -49,31 +47,7 @@
             MethodListBox = new ListBox();
             Method2ListBox = new ListBox();
             NewthonMethodlabel = new Label();
-            label4 = new Label();
-            StartValuetextBox = new TextBox();
-            label5 = new Label();
-            EndValueTextBox = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)GraphicBox).BeginInit();
             SuspendLayout();
-            // 
-            // LoadGraphicForm
-            // 
-            LoadGraphicForm.Location = new Point(886, 427);
-            LoadGraphicForm.Name = "LoadGraphicForm";
-            LoadGraphicForm.Size = new Size(112, 40);
-            LoadGraphicForm.TabIndex = 0;
-            LoadGraphicForm.Text = "График";
-            LoadGraphicForm.UseVisualStyleBackColor = true;
-            LoadGraphicForm.Click += CreateGraphicButton_Click;
-            // 
-            // GraphicBox
-            // 
-            GraphicBox.BackColor = SystemColors.Control;
-            GraphicBox.Location = new Point(528, 193);
-            GraphicBox.Name = "GraphicBox";
-            GraphicBox.Size = new Size(463, 228);
-            GraphicBox.TabIndex = 1;
-            GraphicBox.TabStop = false;
             // 
             // IntervalLabel
             // 
@@ -178,9 +152,9 @@
             // 
             IntervalListBox.FormattingEnabled = true;
             IntervalListBox.ItemHeight = 15;
-            IntervalListBox.Location = new Point(654, 78);
+            IntervalListBox.Location = new Point(654, 60);
             IntervalListBox.Name = "IntervalListBox";
-            IntervalListBox.Size = new Size(337, 109);
+            IntervalListBox.Size = new Size(198, 124);
             IntervalListBox.TabIndex = 18;
             // 
             // IntervalButton
@@ -195,7 +169,7 @@
             // 
             // SolutionButton
             // 
-            SolutionButton.Location = new Point(371, 427);
+            SolutionButton.Location = new Point(184, 159);
             SolutionButton.Name = "SolutionButton";
             SolutionButton.Size = new Size(120, 23);
             SolutionButton.TabIndex = 20;
@@ -235,52 +209,16 @@
             NewthonMethodlabel.AutoSize = true;
             NewthonMethodlabel.Location = new Point(231, 196);
             NewthonMethodlabel.Name = "NewthonMethodlabel";
-            NewthonMethodlabel.Size = new Size(167, 15);
+            NewthonMethodlabel.Size = new Size(95, 15);
             NewthonMethodlabel.TabIndex = 34;
-            NewthonMethodlabel.Text = "Метод половинного деления";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(231, 140);
-            label4.Name = "label4";
-            label4.Size = new Size(166, 15);
-            label4.TabIndex = 36;
-            label4.Text = "Введите начальное значение";
-            // 
-            // StartValuetextBox
-            // 
-            StartValuetextBox.Location = new Point(231, 158);
-            StartValuetextBox.Name = "StartValuetextBox";
-            StartValuetextBox.Size = new Size(166, 23);
-            StartValuetextBox.TabIndex = 35;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(424, 141);
-            label5.Name = "label5";
-            label5.Size = new Size(160, 15);
-            label5.TabIndex = 38;
-            label5.Text = "Введите конечное значение";
-            // 
-            // EndValueTextBox
-            // 
-            EndValueTextBox.Location = new Point(424, 159);
-            EndValueTextBox.Name = "EndValueTextBox";
-            EndValueTextBox.Size = new Size(166, 23);
-            EndValueTextBox.TabIndex = 37;
+            NewthonMethodlabel.Text = "Метод Ньютона";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(1003, 473);
-            Controls.Add(label5);
-            Controls.Add(EndValueTextBox);
-            Controls.Add(label4);
-            Controls.Add(StartValuetextBox);
+            ClientSize = new Size(859, 415);
             Controls.Add(NewthonMethodlabel);
             Controls.Add(Method2ListBox);
             Controls.Add(MethodListBox);
@@ -300,19 +238,13 @@
             Controls.Add(label1);
             Controls.Add(StartIntervalTextBox);
             Controls.Add(IntervalLabel);
-            Controls.Add(GraphicBox);
-            Controls.Add(LoadGraphicForm);
             Name = "Form1";
             Text = "Модифицированный метод Ньютона";
-            ((System.ComponentModel.ISupportInitialize)GraphicBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Button LoadGraphicForm;
-        private PictureBox GraphicBox;
         private Label IntervalLabel;
         private TextBox StartIntervalTextBox;
         private Label label1;
@@ -332,9 +264,5 @@
         private ListBox MethodListBox;
         private ListBox Method2ListBox;
         private Label NewthonMethodlabel;
-        private Label label4;
-        private TextBox StartValuetextBox;
-        private Label label5;
-        private TextBox EndValueTextBox;
     }
 }
