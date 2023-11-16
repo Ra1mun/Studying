@@ -38,18 +38,21 @@
             EndIntervalTextBox = new TextBox();
             StepIntervallabel = new Label();
             StepIntervalTextBox = new TextBox();
-            StartLabel = new Label();
-            StartTextBox = new TextBox();
+            NearbyValueLabel = new Label();
+            NearbyValueTextBox = new TextBox();
             label8 = new Label();
             SolutionLabel = new Label();
             IntervalListBox = new ListBox();
             IntervalButton = new Button();
             SolutionButton = new Button();
             NewtonLabel = new Label();
-            ShodimLabel = new Label();
-            ShodButton = new Button();
             MethodListBox = new ListBox();
-            ShodListBox = new ListBox();
+            Method2ListBox = new ListBox();
+            NewthonMethodlabel = new Label();
+            label4 = new Label();
+            StartValuetextBox = new TextBox();
+            label5 = new Label();
+            EndValueTextBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)GraphicBox).BeginInit();
             SuspendLayout();
             // 
@@ -137,21 +140,21 @@
             StepIntervalTextBox.Size = new Size(166, 23);
             StepIntervalTextBox.TabIndex = 8;
             // 
-            // StartLabel
+            // NearbyValueLabel
             // 
-            StartLabel.AutoSize = true;
-            StartLabel.Location = new Point(12, 139);
-            StartLabel.Name = "StartLabel";
-            StartLabel.Size = new Size(166, 15);
-            StartLabel.TabIndex = 11;
-            StartLabel.Text = "Введите начальное значение";
+            NearbyValueLabel.AutoSize = true;
+            NearbyValueLabel.Location = new Point(12, 141);
+            NearbyValueLabel.Name = "NearbyValueLabel";
+            NearbyValueLabel.Size = new Size(191, 15);
+            NearbyValueLabel.TabIndex = 11;
+            NearbyValueLabel.Text = "Введите приближенное значение";
             // 
-            // StartTextBox
+            // NearbyValueTextBox
             // 
-            StartTextBox.Location = new Point(12, 157);
-            StartTextBox.Name = "StartTextBox";
-            StartTextBox.Size = new Size(166, 23);
-            StartTextBox.TabIndex = 10;
+            NearbyValueTextBox.Location = new Point(12, 159);
+            NearbyValueTextBox.Name = "NearbyValueTextBox";
+            NearbyValueTextBox.Size = new Size(166, 23);
+            NearbyValueTextBox.TabIndex = 10;
             // 
             // label8
             // 
@@ -165,7 +168,7 @@
             // SolutionLabel
             // 
             SolutionLabel.AutoSize = true;
-            SolutionLabel.Location = new Point(12, 115);
+            SolutionLabel.Location = new Point(12, 117);
             SolutionLabel.Name = "SolutionLabel";
             SolutionLabel.Size = new Size(110, 15);
             SolutionLabel.TabIndex = 17;
@@ -192,7 +195,7 @@
             // 
             // SolutionButton
             // 
-            SolutionButton.Location = new Point(184, 157);
+            SolutionButton.Location = new Point(371, 427);
             SolutionButton.Name = "SolutionButton";
             SolutionButton.Size = new Size(120, 23);
             SolutionButton.TabIndex = 20;
@@ -203,48 +206,70 @@
             // NewtonLabel
             // 
             NewtonLabel.AutoSize = true;
-            NewtonLabel.Location = new Point(309, 139);
+            NewtonLabel.Location = new Point(12, 196);
             NewtonLabel.Name = "NewtonLabel";
             NewtonLabel.Size = new Size(213, 15);
             NewtonLabel.TabIndex = 27;
             NewtonLabel.Text = "Модифицированный метод Ньютона";
             // 
-            // ShodimLabel
-            // 
-            ShodimLabel.AutoSize = true;
-            ShodimLabel.Location = new Point(12, 196);
-            ShodimLabel.Name = "ShodimLabel";
-            ShodimLabel.Size = new Size(145, 15);
-            ShodimLabel.TabIndex = 29;
-            ShodimLabel.Text = "Проверка на сходимость";
-            // 
-            // ShodButton
-            // 
-            ShodButton.Location = new Point(163, 211);
-            ShodButton.Name = "ShodButton";
-            ShodButton.Size = new Size(120, 26);
-            ShodButton.TabIndex = 31;
-            ShodButton.Text = "Проверить";
-            ShodButton.UseVisualStyleBackColor = true;
-            ShodButton.Click += ShodButton_Click;
-            // 
             // MethodListBox
             // 
             MethodListBox.FormattingEnabled = true;
             MethodListBox.ItemHeight = 15;
-            MethodListBox.Location = new Point(309, 162);
+            MethodListBox.Location = new Point(12, 219);
             MethodListBox.Name = "MethodListBox";
-            MethodListBox.Size = new Size(213, 49);
+            MethodListBox.Size = new Size(213, 184);
             MethodListBox.TabIndex = 32;
             // 
-            // ShodListBox
+            // Method2ListBox
             // 
-            ShodListBox.FormattingEnabled = true;
-            ShodListBox.ItemHeight = 15;
-            ShodListBox.Location = new Point(12, 226);
-            ShodListBox.Name = "ShodListBox";
-            ShodListBox.Size = new Size(145, 109);
-            ShodListBox.TabIndex = 33;
+            Method2ListBox.FormattingEnabled = true;
+            Method2ListBox.ItemHeight = 15;
+            Method2ListBox.Location = new Point(231, 219);
+            Method2ListBox.Name = "Method2ListBox";
+            Method2ListBox.Size = new Size(213, 184);
+            Method2ListBox.TabIndex = 33;
+            // 
+            // NewthonMethodlabel
+            // 
+            NewthonMethodlabel.AutoSize = true;
+            NewthonMethodlabel.Location = new Point(231, 196);
+            NewthonMethodlabel.Name = "NewthonMethodlabel";
+            NewthonMethodlabel.Size = new Size(167, 15);
+            NewthonMethodlabel.TabIndex = 34;
+            NewthonMethodlabel.Text = "Метод половинного деления";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(231, 140);
+            label4.Name = "label4";
+            label4.Size = new Size(166, 15);
+            label4.TabIndex = 36;
+            label4.Text = "Введите начальное значение";
+            // 
+            // StartValuetextBox
+            // 
+            StartValuetextBox.Location = new Point(231, 158);
+            StartValuetextBox.Name = "StartValuetextBox";
+            StartValuetextBox.Size = new Size(166, 23);
+            StartValuetextBox.TabIndex = 35;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(424, 141);
+            label5.Name = "label5";
+            label5.Size = new Size(160, 15);
+            label5.TabIndex = 38;
+            label5.Text = "Введите конечное значение";
+            // 
+            // EndValueTextBox
+            // 
+            EndValueTextBox.Location = new Point(424, 159);
+            EndValueTextBox.Name = "EndValueTextBox";
+            EndValueTextBox.Size = new Size(166, 23);
+            EndValueTextBox.TabIndex = 37;
             // 
             // Form1
             // 
@@ -252,18 +277,21 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(1003, 473);
-            Controls.Add(ShodListBox);
+            Controls.Add(label5);
+            Controls.Add(EndValueTextBox);
+            Controls.Add(label4);
+            Controls.Add(StartValuetextBox);
+            Controls.Add(NewthonMethodlabel);
+            Controls.Add(Method2ListBox);
             Controls.Add(MethodListBox);
-            Controls.Add(ShodButton);
-            Controls.Add(ShodimLabel);
             Controls.Add(NewtonLabel);
             Controls.Add(SolutionButton);
             Controls.Add(IntervalButton);
             Controls.Add(IntervalListBox);
             Controls.Add(SolutionLabel);
             Controls.Add(label8);
-            Controls.Add(StartLabel);
-            Controls.Add(StartTextBox);
+            Controls.Add(NearbyValueLabel);
+            Controls.Add(NearbyValueTextBox);
             Controls.Add(StepIntervallabel);
             Controls.Add(StepIntervalTextBox);
             Controls.Add(label3);
@@ -293,17 +321,20 @@
         private TextBox EndIntervalTextBox;
         private Label StepIntervallabel;
         private TextBox StepIntervalTextBox;
-        private Label StartLabel;
-        private TextBox StartTextBox;
+        private Label NearbyValueLabel;
+        private TextBox NearbyValueTextBox;
         private Label label8;
         private Label SolutionLabel;
         private ListBox IntervalListBox;
         private Button IntervalButton;
         private Button SolutionButton;
         private Label NewtonLabel;
-        private Label ShodimLabel;
-        private Button ShodButton;
         private ListBox MethodListBox;
-        private ListBox ShodListBox;
+        private ListBox Method2ListBox;
+        private Label NewthonMethodlabel;
+        private Label label4;
+        private TextBox StartValuetextBox;
+        private Label label5;
+        private TextBox EndValueTextBox;
     }
 }

@@ -2,6 +2,7 @@ using Lab5.Source;
 using Microsoft.VisualBasic;
 using System.Diagnostics;
 using System.Drawing.Text;
+using System.Security.Cryptography.Xml;
 
 namespace Lab5
 {
@@ -44,34 +45,28 @@ namespace Lab5
                 currentFunction = functionHolder.GetFunction(i);
             }
         }
-        private void ShodButton_Click(object sender, EventArgs e)
-        {
-            ShodListBox.ClearSelected();
-            Stopwatch stopwatch = new Stopwatch();
-            double x0 = 3;
-            double x1 = 5;
-            double eps = float.Epsilon;
-            int n = 0;
-            var functionHolder = new Source.FunctionHolder();
-            stopwatch.Start();
-            while (Math.Abs(x1 - x0) > eps)
-            {
-                x1 = functionHolder.GetFunction(x0);
-                x0 = x1;
-                n++;
-            }
-            stopwatch.Stop();
-            ShodListBox.Items.Add("сходится");
-            ShodListBox.Items.Add($"Время: {stopwatch.ElapsedTicks} тиков");
-        }
 
         private void MethodButton_Click(object sender, EventArgs e)
         {
+            MethodListBox.ClearSelected();
+            Method2ListBox.ClearSelected();
+
+            for (int i = 1; i <= 4; i++)
+            {
+                var eps = 0.01 * Math.Pow(0.1, i);
+                ModifyNewthonMethod(Convert.ToDouble(NearbyValueTextBox.Text), eps);
+                IterationMethod(Convert.ToDouble(StartValuetextBox.Text), Convert.ToDouble(EndValueTextBox.Text), eps);
+            }
+
+        }
+
+        private void ModifyNewthonMethod(double x, double eps)
+        {
             var functionHolder = new Source.FunctionHolder();
-            var x0 = Convert.ToDouble(StartTextBox.Text);
-            var eps = 0.000001f;
-            int k = 0;
-            var functionx0 = functionHolder.GetDifferential((float)x0);
+            var x0 = (float)x;
+            int iteration = 0;
+
+            var functionx0 = functionHolder.GetDifferential(x0);
             var functionxn = functionHolder.GetFunction(x0);
             var x1 = x0 - (functionxn / functionx0);
 
@@ -80,13 +75,41 @@ namespace Lab5
                 x0 = x1;
                 functionxn = functionHolder.GetFunction(x1);
                 x1 -= (functionxn / functionx0);
-                k++;
+                iteration++;
             }
+
             MethodListBox.Items.Add($"Корень {x1}");
-            MethodListBox.Items.Add($"Количество итераций {k}");
-            MethodListBox.Items.Add($"Погрешность: {x1 - x0}");
+            MethodListBox.Items.Add($"Количество итераций {iteration}");
+            MethodListBox.Items.Add($"Точность решения: {eps}");
         }
 
+        private void IterationMethod(double a, double b, double eps)
+        {
+            var functionHolder = new Source.FunctionHolder();
+            var start = (float)a;
+            var end = (float)b;
+            int k = 0;
+            if(functionHolder.GetFunction(start) * functionHolder.GetFunction(end) <= 0)
+            {
+                while (Math.Abs(start - end) > eps)
+                {
+                    var c = (start + end) / 2;
+                    if (functionHolder.GetFunction(start) * functionHolder.GetFunction(c) < 0)
+                    {
+                        start = c;
+                    }
+                    else
+                    {
+                        end = c;
+                    }
+                    k++;
+                }
+            }
+            var x1 = (start - end) / 2;
 
+            Method2ListBox.Items.Add($"Корень {x1}");
+            Method2ListBox.Items.Add($"Количество итераций {k}");
+            Method2ListBox.Items.Add($"Точность решения: {eps}");
+        }
     }
 }
