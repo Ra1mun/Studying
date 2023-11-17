@@ -20,7 +20,34 @@ namespace Lab5
 
         private void IntervalButton_Click(object sender, EventArgs e)
         {
-            IntervalListBox.Items.Clear();
+            IntervalListBox.ClearSelected();
+            IntervalMethod();
+
+        }
+
+        private void MethodButton_Click(object sender, EventArgs e)
+        {
+            MethodListBox.ClearSelected();
+            Method2ListBox.ClearSelected();
+
+            for (int i = 0; i <= 3; i++)
+            {
+                var eps = 0.01 * Math.Pow(0.1, i);
+                ModifyNewthonMethod(Convert.ToDouble(NearbyValueTextBox.Text), eps);
+                NewthonMethod(Convert.ToDouble(NearbyValueTextBox.Text), eps);
+            }
+
+        }
+
+        private void ConvergantButton_Click(object sender, EventArgs e)
+        {
+            ConvergantListBox.ClearSelected();
+            ConvergantListBox.Items.Add($"—ходимость: {Convergant(Convert.ToDouble(StartIntervalTextBox.Text),
+                Convert.ToDouble(EndIntervalTextBox.Text), Convert.ToDouble(StepIntervalTextBox.Text))}");
+            ConvergantListBox.Items.Add($"ќценка точности: {CalculateAccureacy(_nearbyValue, MinFunction(_a, _b, _step))}");
+        }
+        private void IntervalMethod()
+        {
             var functionHolder = new Source.FunctionHolder();
             var start = Convert.ToDouble(StartIntervalTextBox.Text);
             var end = Convert.ToDouble(EndIntervalTextBox.Text);
@@ -42,21 +69,6 @@ namespace Lab5
                 currentFunction = functionHolder.GetFunction(i);
             }
             _a = start; _b = end; _step = step;
-
-        }
-
-        private void MethodButton_Click(object sender, EventArgs e)
-        {
-            MethodListBox.ClearSelected();
-            Method2ListBox.ClearSelected();
-
-            for (int i = 0; i <= 3; i++)
-            {
-                var eps = 0.01 * Math.Pow(0.1, i);
-                ModifyNewthonMethod(Convert.ToDouble(NearbyValueTextBox.Text), eps);
-                NewthonMethod(Convert.ToDouble(NearbyValueTextBox.Text), eps);
-            }
-
         }
 
         private void ModifyNewthonMethod(double x, double eps)
@@ -126,13 +138,6 @@ namespace Lab5
                 }
             }
             return min;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ConvergantListBox.Items.Add($"—ходимость: {Convergant(Convert.ToDouble(StartIntervalTextBox.Text),
-                Convert.ToDouble(EndIntervalTextBox.Text), Convert.ToDouble(StepIntervalTextBox.Text))}");
-            ConvergantListBox.Items.Add($"ќценка точности: {CalculateAccureacy(_nearbyValue, MinFunction(_a, _b, _step))}");
         }
     }
 }

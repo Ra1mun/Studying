@@ -261,7 +261,7 @@
             ConvergantButton.TabIndex = 37;
             ConvergantButton.Text = "Посчитать сходимость";
             ConvergantButton.UseVisualStyleBackColor = true;
-            ConvergantButton.Click += button2_Click;
+            ConvergantButton.Click += ConvergantButton_Click;
             // 
             // Form1
             // 
