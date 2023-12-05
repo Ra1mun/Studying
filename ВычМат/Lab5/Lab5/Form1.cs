@@ -42,10 +42,10 @@ namespace Lab5
         private void ConvergantButton_Click(object sender, EventArgs e)
         {
             ConvergantListBox.ClearSelected();
-            ConvergantListBox.Items.Add($"—ходимость: {Convergant(Convert.ToDouble(StartIntervalTextBox.Text),
-                Convert.ToDouble(EndIntervalTextBox.Text), Convert.ToDouble(StepIntervalTextBox.Text))}");
+            ConvergantListBox.Items.Add($"—ходимость: {Convergant(_a, _b, _nearbyValue)}");
             ConvergantListBox.Items.Add($"ќценка точности: {CalculateAccureacy(_nearbyValue, MinFunction(_a, _b, _step))}");
         }
+
         private void IntervalMethod()
         {
             var functionHolder = new Source.FunctionHolder();
@@ -57,10 +57,7 @@ namespace Lab5
             var previousFunction = functionHolder.GetFunction(start);
             for (var i = start + 2 * step; i < end; i = i + step)
             {
-                if ((currentFunction > 0 && previousFunction < 0)
-                    || (currentFunction < 0 && previousFunction > 0)
-                    || (currentFunction == eps && previousFunction != eps)
-                    || (currentFunction != eps && previousFunction == eps))
+                if (currentFunction * previousFunction < 0)
                 {
                     IntervalListBox.Items.Add(i);
                 }

@@ -45,5 +45,7 @@ C:\Studying\ООП\Lab3\Lab3\Array.cpp(216,15): error C2995: int Array<T>::Min(v
 C:\Studying\ООП\Lab3\Lab3\Array.h(32,6): message : см. объявление "Array<T>::Min"
 C:\Studying\ООП\Lab3\Lab3\Array.cpp(228,16): error C2995: void Array<T>::Sorting(void): шаблон функции уже определен
 C:\Studying\ООП\Lab3\Lab3\Array.h(33,7): message : см. объявление "Array<T>::Sorting"
-  Lab3.cpp
-  Создание кода...
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(246,10): error C2995: std::ostream &operator <<(std::ostream &,Array<T> &): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(246,10): message : см. объявление "operator <<"
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(256,10): error C2995: std::istream &operator >>(std::istream &,Array<T> &): шаблон функции уже определен
+C:\Studying\ООП\Lab3\Lab3\Array.cpp(256,10): message : см. объявление "operator >>"

@@ -1,27 +1,5 @@
-﻿  Array.cpp
-  lab_3.cpp
-C:\Studying\ООП\lab_3\lab_3\lab_3.cpp(7,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  Создание кода...
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __cdecl Array<float>::Array<float>(void)" (??0?$Array@M@@QEAA@XZ) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __cdecl Array<float>::Array<float>(class Array<float> const &)" (??0?$Array@M@@QEAA@AEBV0@@Z) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __cdecl Array<float>::~Array<float>(void)" (??1?$Array@M@@QEAA@XZ) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: void __cdecl Array<float>::Scan(int)" (?Scan@?$Array@M@@QEAAXH@Z) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: void __cdecl Array<float>::Print(void)" (?Print@?$Array@M@@QEAAXXZ) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: class Array<float> & __cdecl Array<float>::operator+=(float)" (??Y?$Array@M@@QEAAAEAV0@M@Z) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: class Array<float> __cdecl Array<float>::operator+(float)" (??H?$Array@M@@QEAA?AV0@M@Z) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: class Array<float> & __cdecl Array<float>::DelPosEq(int)" (?DelPosEq@?$Array@M@@QEAAAEAV1@H@Z) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: bool __cdecl Array<float>::operator==(class Array<float>)" (??8?$Array@M@@QEAA_NV0@@Z) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: void __cdecl Array<float>::Sorting(void)" (?Sorting@?$Array@M@@QEAAXXZ) в функции main.
+﻿  lab_3.cpp
+C:\Studying\ООП\lab_3\lab_3\lab_3.cpp(312,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
 lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl operator<<(class std::basic_ostream<char,struct std::char_traits<char> > &,class Array<float> &)" (??6@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AEAV01@AEAV?$Array@M@@@Z) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __cdecl Array<int>::Array<int>(void)" (??0?$Array@H@@QEAA@XZ) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __cdecl Array<int>::Array<int>(class Array<int> const &)" (??0?$Array@H@@QEAA@AEBV0@@Z) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __cdecl Array<int>::~Array<int>(void)" (??1?$Array@H@@QEAA@XZ) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: void __cdecl Array<int>::Scan(int)" (?Scan@?$Array@H@@QEAAXH@Z) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: void __cdecl Array<int>::Print(void)" (?Print@?$Array@H@@QEAAXXZ) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: class Array<int> & __cdecl Array<int>::operator+=(int)" (??Y?$Array@H@@QEAAAEAV0@H@Z) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: class Array<int> __cdecl Array<int>::operator+(int)" (??H?$Array@H@@QEAA?AV0@H@Z) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: class Array<int> & __cdecl Array<int>::DelPosEq(int)" (?DelPosEq@?$Array@H@@QEAAAEAV1@H@Z) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: bool __cdecl Array<int>::operator==(class Array<int>)" (??8?$Array@H@@QEAA_NV0@@Z) в функции main.
-lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: void __cdecl Array<int>::Sorting(void)" (?Sorting@?$Array@H@@QEAAXXZ) в функции main.
 lab_3.obj : error LNK2019: ссылка на неразрешенный внешний символ "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl operator<<(class std::basic_ostream<char,struct std::char_traits<char> > &,class Array<int> &)" (??6@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AEAV01@AEAV?$Array@H@@@Z) в функции main.
-C:\Studying\ООП\lab_3\x64\Debug\lab_3.exe : fatal error LNK1120: неразрешенных внешних элементов: 22
+C:\Studying\ООП\lab_3\x64\Debug\lab_3.exe : fatal error LNK1120: неразрешенных внешних элементов: 2

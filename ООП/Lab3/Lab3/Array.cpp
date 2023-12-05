@@ -3,7 +3,7 @@
 template<class T>
 Array<T>::Array()
 {
-	arr = new T[0];
+	arr = nullptr;
 	n = 0;
 }
 template<class T>
@@ -116,7 +116,7 @@ template<class T>
 Array<T>& Array<T>::operator+=(Array copyArray)
 {
 	T* t;
-	t = new int[n + copyArray.n];
+	t = new T[n + copyArray.n];
 	for (int i = 0; i < n; i++)
 		t[i] = arr[i];
 	for (int i = 0; i < n; i++)
@@ -203,7 +203,7 @@ bool Array<T>::operator!=(Array copyArray)
 template<class T>
 int Array<T>::Max()
 {
-	int max = arr[0];
+	T max = arr[0];
 	for (int i = 1; i < n; i++)
 	{
 		if (arr[i] > max)
@@ -215,7 +215,7 @@ int Array<T>::Max()
 template<class T>
 int Array<T>::Min()
 {
-	int min = arr[0];
+	T min = arr[0];
 	for (int i = 1; i < n; i++)
 	{
 		if (arr[i] < min)
@@ -227,7 +227,7 @@ int Array<T>::Min()
 template<class T>
 void Array<T>::Sorting()
 {
-	int temp{};
+	T temp{};
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < n; j++)
@@ -242,3 +242,26 @@ void Array<T>::Sorting()
 	}
 }
 
+template<class T>
+ostream& operator<<(ostream& r, Array<T>& x)
+{
+	for (int i = 0; i < x.n; i++) {
+		r << x.a[i] << " ";
+	}
+	return r;
+
+}
+
+template<class T>
+istream& operator>>(istream& r, Array<T>& x)
+{
+	cout << "Введите количество элементов в массиве: ";
+	r >> x.n;
+	x.a = new T[x.n];
+	for (int i = 0; i < x.n; i++) {
+		cout << "Введите элемент " << i << ": ";
+		r >> x.a[i];
+	}
+	return r;
+
+}

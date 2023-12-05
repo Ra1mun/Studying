@@ -4,7 +4,7 @@
     {
         public float GetFunction(double x)
         {
-            return (float)(2.2 - Math.Pow(2,x));
+            return (float)(x*x - 4);
         }
 
         public float GetDifferential(float x)

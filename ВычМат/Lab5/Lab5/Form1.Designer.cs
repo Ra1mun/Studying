@@ -48,7 +48,6 @@
             Method2ListBox = new ListBox();
             NewthonMethodlabel = new Label();
             ConvergantListBox = new ListBox();
-            button1 = new Button();
             ConvergantButton = new Button();
             SuspendLayout();
             // 
@@ -241,17 +240,8 @@
             ConvergantListBox.ItemHeight = 25;
             ConvergantListBox.Location = new Point(662, 365);
             ConvergantListBox.Name = "ConvergantListBox";
-            ConvergantListBox.Size = new Size(251, 304);
+            ConvergantListBox.Size = new Size(312, 304);
             ConvergantListBox.TabIndex = 35;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(0, 0);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 36;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
             // 
             // ConvergantButton
             // 
@@ -270,7 +260,6 @@
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(1227, 692);
             Controls.Add(ConvergantButton);
-            Controls.Add(button1);
             Controls.Add(ConvergantListBox);
             Controls.Add(NewthonMethodlabel);
             Controls.Add(Method2ListBox);
@@ -319,7 +308,6 @@
         private ListBox Method2ListBox;
         private Label NewthonMethodlabel;
         private ListBox ConvergantListBox;
-        private Button button1;
         private Button ConvergantButton;
     }
 }

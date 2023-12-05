@@ -31,5 +31,8 @@ public:
 	int Max();
 	int Min();
 	void Sorting();
+
+	friend ostream& operator<<(ostream& r, Array& x);
+	friend istream& operator>>(istream& r, Array& x);
 };
 #include "Array.cpp"
