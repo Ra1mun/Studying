@@ -16,6 +16,8 @@ public:
 	Array(const Array& x);
 	Array& operator = (const Array& x);
 	~Array();
+	int GetLength();
+	void SetLength(int n);
 	T& operator [] (int i);
 	void Scan(int m);
 	void Print() const;
@@ -33,9 +35,12 @@ public:
 	int Max();
 	int Min();
 	void Sorting();
-	friend ostream& operator<<(ostream& r, Array& x);
-	friend istream& operator>>(istream& r, Array& x);
+	
 };
+template<typename T>
+ostream& operator<<(ostream& r, Array<T>& x);
+template<typename T>
+istream& operator>>(istream& r, Array<T>& x);
 
 template<typename T>
 Array<T>::Array()
@@ -85,6 +90,18 @@ template<typename T>
 Array<T>::~Array()
 {
 	delete[]arr;
+}
+
+template<typename T>
+int Array<T>::GetLength()
+{
+	return n;
+}
+
+template<typename T>
+void Array<T>::SetLength(int n)
+{
+	this.n = n;
 }
 
 template<typename T>
@@ -143,7 +160,7 @@ Array<T>& Array<T>::operator+=(T key)
 template<typename T>
 Array<T> Array<T>::operator+(T key)
 {
-	Array Res(arr, n + 1);
+	Array Res(arr, n);
 	Res += key;
 	return Res;
 }
@@ -286,8 +303,8 @@ void Array<T>::Sorting()
 template<typename T>
 ostream& operator<<(ostream& r, Array<T>& x)
 {
-	for (int i = 0; i < x.n; i++) {
-		r << x.a[i] << " ";
+	for (int i = 0; i < x.GetLength(); i++) {
+		r << x[i] << " ";
 	}
 	return r;
 
@@ -297,11 +314,13 @@ template<typename T>
 istream& operator>>(istream& r, Array<T>& x)
 {
 	cout << "Введите количество элементов в массиве: ";
-	r >> x.n;
-	x.a = new T[x.n];
-	for (int i = 0; i < x.n; i++) {
+	int n;
+	r >> n;
+	x.SetLength(n);
+	x.a = new T[x.GetLength()];
+	for (int i = 0; i < x.GetLength(); i++) {
 		cout << "Введите элемент " << i << ": ";
-		r >> x.a[i];
+		r >> x[i];
 	}
 	return r;
 
