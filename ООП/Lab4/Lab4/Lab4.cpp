@@ -2,6 +2,7 @@
 
 int main()
 {
+	srand(time(nullptr));
 	CStr string1(20);
 	cout << string1 << endl;
 	CStr copyString(string1);

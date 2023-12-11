@@ -2,25 +2,38 @@
 
 char* CStr::strGenerate(int length)
 {
-	string = new char[length];
-	for (int i = 0; i < length; i++) {
-		string[i] = char(rand() % 26 + 0x61);
+	if (length > 20) {
+		length = 20;
 	}
+	if (length <= 0) {
+		length = 1;
+	}
+	char* str = new char[length + 1];
+	for (int i = 0; i < length; i++) {
+		str[i] = 97 + rand() % 26;
+	}
+	str[length] = '/0';
+	return str;
 }
 
 CStr::CStr()
 {
-	strGenerate(rand() % 21 + 1);
+	string = strGenerate(rand() % 21 + 1);
 }
 
-CStr::CStr(char* str)
+CStr::CStr(const char* str)
 {
-	strcpy(string, str);
+	int i = 0;
+	while (str[i] != '/0') {
+		i++;
+	}
+
+	strcpy_s(string, i, str);
 }
 
 CStr::CStr(int length)
 {
-	strGenerate(length);
+	string = strGenerate(length);
 }
 
 CStr::CStr(const CStr& object)
@@ -48,16 +61,23 @@ char& CStr::operator[](int index)
 
 CStr& CStr::operator=(const CStr& object)
 {
-	delete[] string;
+	if (this == &object)
+		return *this;
 
+	delete[] string;
 	string = object.string;
+	return *this;
 }
 
-CStr& CStr::operator=(char* str)
+CStr& CStr::operator=(const char* str)
 {
-	delete[] string;
+	CStr temp(str);
+	if (this == &temp)
+		return *this;
 
-	string = str;
+	delete[] string;
+	string = temp.string;
+	return *this;
 }
 
 bool CStr::operator>(CStr& object)
@@ -69,7 +89,11 @@ bool CStr::operator>(CStr& object)
 		else if (string[i] < object[i]) {
 			return false;
 		}
+		else {
+			continue;
+		}
 	}
+	return true;
 }
 
 bool CStr::operator==(CStr& object)
@@ -84,7 +108,7 @@ bool CStr::operator==(CStr& object)
 
 int CStr::GetLength()
 {
-	strlen(string);
+	return strlen(string);
 }
 
 ostream& operator<<(ostream& stream, CStr& object)

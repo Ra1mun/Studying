@@ -52,14 +52,14 @@ template<typename T>
 Array<T>::Array(int m)
 {
 	n = m;
-	arr = new T[n];
+	arr = new T[m];
 }
 
 template<typename T>
 Array<T>::Array(T* b, int m)
 {
 	n = m;
-	arr = new T[n];
+	arr = new T[m];
 	for (int i = 0; i < n; i++)
 		arr[i] = b[i];
 }
@@ -89,7 +89,10 @@ Array<T>& Array<T>::operator=(const Array& x)
 template<typename T>
 Array<T>::~Array()
 {
-	delete[]arr;
+	cout << "Deleted: " << *this << endl;
+	
+	delete[] arr;
+	cout << "Okay" << endl;
 }
 
 template<typename T>
@@ -160,8 +163,11 @@ Array<T>& Array<T>::operator+=(T key)
 template<typename T>
 Array<T> Array<T>::operator+(T key)
 {
-	Array Res(arr, n);
-	Res += key;
+	Array Res(n + 1);
+	for (int i = 0; i < GetLength(); i++) {
+		Res.arr[i] = arr[i];
+	}
+	Res.arr[n] = key;
 	return Res;
 }
 
@@ -183,8 +189,13 @@ Array<T>& Array<T>::operator+=(Array copyArray)
 template<typename T>
 Array<T> Array<T>::operator+(Array copyArray)
 {
-	Array Res(n);
-	Res += copyArray;
+	Array Res(n + copyArray.GetLength());
+	for (int i = 0; i < GetLength(); i++) {
+		Res.arr[i] = arr[i];
+	}
+	for (int i = 0; i < copyArray.GetLength(); i++) {
+		Res.arr[i + GetLength()] = copyArray[i];
+	}
 	return Res;
 }
 
@@ -208,9 +219,9 @@ Array<T>& Array<T>::DelPosEq(int pos)
 
 	T* t;
 	t = new T[n - 1];
-	for (int i = 0; i < pos - 1; i++)
+	for (int i = 0; i < pos; i++)
 		t[i] = arr[i];
-	for (int i = pos; i < n; i++)
+	for (int i = pos + 1; i < n; i++)
 		t[i - 1] = arr[i];
 
 	delete[]arr;
@@ -286,9 +297,9 @@ template<typename T>
 void Array<T>::Sorting()
 {
 	T temp{};
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n - 1; i++)
 	{
-		for (int j = 0; j < n; j++)
+		for (int j = i + 1; j < n; j++)
 		{
 			if (arr[i] < arr[j])
 			{
@@ -386,16 +397,16 @@ int main()
 #pragma region Test5
     cout << "Test 5:" << endl;
 
-    cout << "String:" << endl;
+	cout << "String:" << endl;
     Array<string> functionStringArray = stringArray + "gg";
     functionStringArray.Print();
 
     cout << "Float:" << endl;
-    Array<float> functionFloatArray = floatArray + 1.2345f;
+    Array<float> functionFloatArray = floatArray + 1.2345f; //f
     functionFloatArray.Print();
 
     cout << "Int:" << endl;
-    Array<int> functionIntArray = intArray + 69;
+    Array<int> functionIntArray = intArray + 69;  //f
     functionIntArray.Print();
     cout << "Float: " << endl;
     functionFloatArray.DelPosEq(0);
@@ -412,5 +423,7 @@ int main()
     cout << "Integer:" << endl;
     intArray.Sorting();
     intArray.Print();
+	cout << "---" << endl;
+	return 0;
 #pragma endregion
 }

@@ -57,7 +57,7 @@ void CStrArray::sort_by_length()
     sortByContent = false;
 }
 
-int CStrArray::bin_search(char* str)
+int CStrArray::bin_search(const char* str)
 {
     int left = 0;
     int right = length - 1;
