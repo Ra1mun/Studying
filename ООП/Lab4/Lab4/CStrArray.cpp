@@ -59,7 +59,37 @@ void CStrArray::sort_by_length()
 
 int CStrArray::bin_search(char* str)
 {
-    return 0;
+    int left = 0;
+    int right = length - 1;
+    CStr temp(str);
+    while (left <= right) {
+        int m = left + (right - left) / 2;
+        if (arr[m] == temp)
+            return m;
+        if (arr[m] > temp)
+            right = m - 1;
+        else
+            left = m + 1;
+            
+    }
+    return -1;
+}
+
+int CStrArray::bin_search(CStr& object)
+{
+    int left = 0;
+    int right = length - 1;
+    while (left <= right) {
+        int m = left + (right - left) / 2;
+        if (arr[m] == object)
+            return m;
+        if (arr[m] > object)
+            right = m - 1;
+        else
+            left = m + 1;
+
+    }
+    return -1;
 }
 
 bool CStrArray::check_sort()
