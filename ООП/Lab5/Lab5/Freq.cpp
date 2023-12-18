@@ -3,19 +3,20 @@
 void Freq::Calc(SBase& object)
 {
     int number;
-    sum = 0;
-    while ((number = object.Get()) >= 0) {
-        counts[number]++;
-        sum += number;
+    sum_ = 0;
+    while ((number = object.Get()) != -1) {
+        counts_[number]++;
+        sum_ += number;
     }
 }
 
 
 ostream& operator<<(ostream& stream, Freq& object)
 {
-    for (const auto& pair : object.counts) {
-        stream << pair.first << ": " << pair.second << std::endl;
+    for (const auto& pair : object.counts_) {
+        stream << pair.first << ": " << pair.second << endl;
     }
-    stream << "Sum: " << object.sum << std::endl;
+    stream << "Sum: " << object.sum_ << endl;
+    stream << "-----------" << endl;
     return stream;
 }

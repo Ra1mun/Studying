@@ -3,19 +3,25 @@
 void Diap::Calc(SBase& object)
 {
     int number;
-    int minNumber = INT_MAX;
-    int maxNumber = INT_MIN;
-    int count = 0;
-    while ((number = object.Get()) >= 0) {
-        if (number < minNumber) {
-            minNumber = number;
+    max_ = INT_MIN;
+    min_ = INT_MAX;
+    count_ = 0;
+    while ((number = object.Get()) != -1) {
+        if (number < min_) {
+            min_ = number;
         }
-        if (number > maxNumber) {
-            maxNumber = number;
+        if (number > max_) {
+            max_ = number;
         }
-        count++;
+        count_++;
     }
-    std::cout << "Min Number: " << minNumber << std::endl;
-    std::cout << "Max Number: " << maxNumber << std::endl;
-    std::cout << "Count: " << count << std::endl;
+}
+
+ostream& operator<<(ostream& stream, Diap& object)
+{
+    stream << "Min Number: " << object.min_ << endl;
+    stream << "Max Number: " << object.max_ << endl;
+    stream << "Count: " << object.count_ << endl;
+    stream << "--------" << endl;
+    return stream;
 }

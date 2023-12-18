@@ -3,7 +3,8 @@
 
 class Diap : public Freq {
 private:
-	int min, max, sum;
+	int min_, max_, count_;
 public:
-	void Calc(SBase& object);
+	void Calc(SBase& container);
+	friend ostream& operator<<(ostream& stream, Diap& object);
 };

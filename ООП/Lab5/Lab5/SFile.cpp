@@ -1,6 +1,6 @@
 #include "SFile.h"
 
-SFile::SFile(const std::string& filename)
+SFile::SFile(const char* filename)
 {
     inputFile.open(filename);
 }
@@ -17,7 +17,7 @@ int SFile::Get()
         return number;
     }
     else {
-        return -1; // Возвращаем отрицательное значение при достижении конца файла
+        return -1;
     }
 }
 

@@ -9,8 +9,7 @@ class SFile : public SBase {
 private:
     std::ifstream inputFile; // Поток для чтения из файла
 public:
-    SFile(const std::string& filename);
-
+    SFile(const char* filename);
     ~SFile();
     int Get() override;
 };
