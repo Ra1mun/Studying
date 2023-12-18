@@ -5,7 +5,5 @@ class Diap : public Freq {
 private:
 	int min, max, sum;
 public:
-	Diap();
-	void Calc(SBase* object);
-	friend ostream operator<<(ostream& stream, Diap& object);
+	void Calc(SBase& object);
 };

@@ -10,7 +10,7 @@ char* CStr::strGenerate(int length)
 	}
 	char* str = new char[length + 1];
 	for (int i = 0; i < length; i++) {
-		str[i] = 97 + rand() % 26;
+		str[i] = 96 + rand() % 26;
 	}
 	str[length] = '/0';
 	return str;
@@ -23,12 +23,15 @@ CStr::CStr()
 
 CStr::CStr(const char* str)
 {
-	int i = 0;
-	while (str[i] != '/0') {
-		i++;
+	int length = 0;
+	while (str[length] != '/0') {
+		length++;
 	}
-
-	strcpy_s(string, i, str);
+	string = new char[length + 1];
+	for (int i = 0; i < length; i++) {
+		string[i] = str[i];
+	}
+	string[length] = '/0';
 }
 
 CStr::CStr(int length)
@@ -38,7 +41,12 @@ CStr::CStr(int length)
 
 CStr::CStr(const CStr& object)
 {
-	string = object.string;
+	int length = object.GetLength();
+	string = new char[length + 1];
+	for (int i = 0; i < length; i++) {
+		string[i] = object.string[i];
+	}
+	string[length] = '/0';
 }
 
 CStr::~CStr()
@@ -65,7 +73,12 @@ CStr& CStr::operator=(const CStr& object)
 		return *this;
 
 	delete[] string;
-	string = object.string;
+	int length = object.GetLength();
+	string = new char[length + 1];
+	for (int i = 0; i < length; i++) {
+		string[i] = object.string[i];
+	}
+	string[length] = '/0';
 	return *this;
 }
 
@@ -76,7 +89,12 @@ CStr& CStr::operator=(const char* str)
 		return *this;
 
 	delete[] string;
-	string = temp.string;
+	int length = temp.GetLength();
+	string = new char[length + 1];
+	for (int i = 0; i < length; i++) {
+		string[i] = temp.string[i];
+	}
+	string[length] = '/0';
 	return *this;
 }
 
@@ -96,6 +114,11 @@ bool CStr::operator>(CStr& object)
 	return true;
 }
 
+bool CStr::operator<(CStr& object)
+{
+	return !(*this > object);
+}
+
 bool CStr::operator==(CStr& object)
 {
 	for (int i = 0; i < GetLength(); i++) {
@@ -106,9 +129,13 @@ bool CStr::operator==(CStr& object)
 	return true;
 }
 
-int CStr::GetLength()
+int CStr::GetLength() const
 {
-	return strlen(string);
+	int i = 0;
+	while (string[i] != '/0') {
+		i++;
+	}
+	return i;
 }
 
 ostream& operator<<(ostream& stream, CStr& object)

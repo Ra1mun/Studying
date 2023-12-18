@@ -17,6 +17,7 @@ public:
 	CStr& operator=(const CStr& object);
 	CStr& operator=(const char *str);
 	bool operator>(CStr& object);
+	bool operator<(CStr& object);
 	bool operator ==(CStr& object);
 	int GetLength();
 	friend ostream& operator<<(ostream& stream, CStr& object);

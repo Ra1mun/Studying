@@ -1,15 +1,24 @@
 #include "SFile.h"
 
+SFile::SFile(const std::string& filename)
+{
+    inputFile.open(filename);
+}
+
+SFile::~SFile()
+{
+    inputFile.close();
+}
+
 int SFile::Get()
 {
-    string line;
-    ifstream in;
-
-    in.open("testfile.txt");
-    if (in.is_open()) {
-        while (getline(in, line)) {
-            cout << line << endl;
-        }
+    int number;
+    if (inputFile >> number) {
+        return number;
     }
-    in.close();
+    else {
+        return -1; // Возвращаем отрицательное значение при достижении конца файла
+    }
 }
+
+

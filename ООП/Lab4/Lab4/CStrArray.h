@@ -4,10 +4,10 @@
 using namespace std;
 class CStrArray {
 private:
-	bool sortByContent;
-	bool sortByLength;
-	CStr* arr;
-	int length;
+	bool sortByContent_;
+	bool sortByLength_;
+	CStr* arr_;
+	int length_;
 	
 public:
 	CStrArray(int length);

@@ -6,6 +6,11 @@
 
 using namespace std;
 class SFile : public SBase {
+private:
+    std::ifstream inputFile; // Поток для чтения из файла
 public:
-	int Get();
+    SFile(const std::string& filename);
+
+    ~SFile();
+    int Get() override;
 };
