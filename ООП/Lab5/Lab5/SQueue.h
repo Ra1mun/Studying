@@ -3,10 +3,10 @@
 
 class SQueue : public SBase {
 private:
-	int* queue;
-	int length;
-	int currentQueue;
+	int* queue_;
+	int length_;
+	int currentQueue_;
 public:
 	SQueue(int length);
-	int Get();
+	int Get() override;
 };

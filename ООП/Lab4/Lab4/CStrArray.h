@@ -4,10 +4,10 @@
 using namespace std;
 class CStrArray {
 private:
-	bool sortByContent;
-	bool sortByLength;
-	CStr* arr;
-	int length;
+	bool sortByContent_;
+	bool sortByLength_;
+	CStr* arr_;
+	int length_;
 	
 public:
 	CStrArray(int length);
@@ -15,7 +15,7 @@ public:
 	CStr& operator[](int index);
 	void sotr_by_content();
 	void sort_by_length();
-	int bin_search(char* str);
+	int bin_search(const char* str);
 	int bin_search(CStr& object);
 	bool check_sort();
 	friend ostream& operator<<(ostream& stream, CStrArray& object);
