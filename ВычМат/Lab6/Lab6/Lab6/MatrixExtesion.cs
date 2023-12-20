@@ -6,8 +6,8 @@ namespace Lab6
     {
         public static Matrix MatrixExpand(Matrix matrix, int newRowLength, int newColumnLength)
         {
-            var rows = matrix.GetMatrixColumnLength();
-            var cols = matrix.GetMatrixRowLength();
+            var rows = matrix.GetColumnLength();
+            var cols = matrix.GetRowLength();
             var result = new Matrix(newRowLength, newColumnLength);
             
             for(int i=0;i < rows;i++)
@@ -21,7 +21,7 @@ namespace Lab6
             return result;
         }
 
-        public static Matrix GausRevers(double[][] matrix, double[][] vector, int n = 1)
+        public static Matrix GausReversForX(double[][] matrix, double[][] vector, int n = 1)
         {
             var result = new Matrix(n, 1);
             for (int i = 0; i < n; ++i)
@@ -37,7 +37,7 @@ namespace Lab6
             return result;
         }
 
-        public static Matrix GausRevers2(double[][] matrix, double[][] vector, int n)
+        public static Matrix GausReversForY(double[][] matrix, double[][] vector, int n)
         {
             var result = new Matrix(n, 1);
             var sum = 0.0;
@@ -56,8 +56,8 @@ namespace Lab6
         
         public static Matrix ConvertToUpperTriangular(Matrix matrix)
         {
-            var rows = matrix.GetMatrixColumnLength();
-            var cols = matrix.GetMatrixRowLength();
+            var rows = matrix.GetColumnLength();
+            var cols = matrix.GetRowLength();
             var result = new Matrix(matrix);
             
             for (int k = 0; k < rows - 1; k++)
@@ -87,14 +87,14 @@ namespace Lab6
         
         public static Matrix MultiplyMatrices(Matrix matrixA, Matrix matrixB)
         {
-            if (matrixA.GetMatrixRowLength() != matrixB.GetMatrixColumnLength())
+            if (matrixA.GetRowLength() != matrixB.GetColumnLength())
             {
                 return null;
             }
             
-            var aColumnLength = matrixA.GetMatrixColumnLength();
-            var aRowLength = matrixA.GetMatrixRowLength();
-            var bRowLength = matrixB.GetMatrixRowLength();
+            var aColumnLength = matrixA.GetColumnLength();
+            var aRowLength = matrixA.GetRowLength();
+            var bRowLength = matrixB.GetRowLength();
 
             var result = new Matrix(aColumnLength, bRowLength);
             for (int i = 0; i < aColumnLength; i++)
@@ -114,8 +114,8 @@ namespace Lab6
         
         public static Matrix MatrixDecompos2(Matrix matrix)
         {
-            var n = matrix.GetMatrixColumnLength();
-            var m = matrix.GetMatrixRowLength();
+            var n = matrix.GetColumnLength();
+            var m = matrix.GetRowLength();
             var result = new Matrix(n, m);
 
             result.SetElement(0, 0, Math.Sqrt(matrix.GetElement(0, 0)));
@@ -136,7 +136,7 @@ namespace Lab6
                         for(int k = 0;k < i; k++)
                         {
                             temp += Math.Pow(result.GetElement(k, i), 2);
-                            Iteration++;
+                            matrix.Iteration++;
                         }
                         result.SetElement(i, i, Math.Sqrt(matrix.GetElement(i, i) - temp));
                     }
@@ -145,7 +145,7 @@ namespace Lab6
                     {
                         for (int k = 0; k < i; k++)
                         {
-                            Iteration++;
+                            matrix.Iteration++;
                             temp += result.GetElement(k, i) * result.GetElement(k, j);
                         }
                         result.SetElement(i, j, (matrix.GetElement(i, j) - temp) / result.GetElement(i, i));
@@ -156,9 +156,31 @@ namespace Lab6
                         result.SetElement(i, j, 0);
                     }
                     
-                    Iteration++;
+                    matrix.Iteration++;
                 }
             }
+            return result;
+        }
+        
+        public static Matrix MatrixTranspose(Matrix matrix)
+        {
+            var columnLength = matrix.GetColumnLength();
+            var rowLength = matrix.GetRowLength();
+            
+            if (columnLength != rowLength)
+            {
+                return null;
+            }
+
+            var result = new Matrix(columnLength, rowLength);
+            for(int i = 0; i < columnLength; i++)
+            {
+                for(int j = 0; j < rowLength; j++)
+                {
+                    result.SetElement(i, j, matrix.GetElement(j, i)); 
+                }
+            }
+
             return result;
         }
     }

@@ -18,28 +18,19 @@ namespace Lab6
         {
             var matrixLength = ReadFile("data.txt");
             ShowMatrix(_a);
-            _a.MatrixTranspose();
-            ShowMatrix(_a);
-            /*if (CheckAccuracy(_a))
-            {
-                _b = MatrixDecompos2(_a);
-            }
-            
-            ShowMatrix(_a);
+            ShowMatrix(_freeVector);
+            _b = MatrixExtesion.MatrixDecompos2(_a);
             ShowMatrix(_b);
-            
-            _b.MatrixTranspose();
-            _c = _b;
+            _c = MatrixExtesion.MatrixTranspose(_b);
             ShowMatrix(_c);
-            _b.MatrixTranspose();
-            
-            var y = GausRevers2(_b.GetArrayMatrix(), _freeVector.GetArrayMatrix(), matrixLength.Item1);
-            _x = GausRevers(_c.GetArrayMatrix(), y.GetArrayMatrix(), matrixLength.Item1);
+
+            var y = MatrixExtesion.GausReversForY(_b.GetArrayMatrix(), _freeVector.GetArrayMatrix(), matrixLength.Item1);
+            _x = MatrixExtesion.GausReversForX(_c.GetArrayMatrix(), y.GetArrayMatrix(), matrixLength.Item1);
             
             ShowResultMatrix(_x, matrixLength.Item1);
             
             if(_x!=null)
-                Check(_x);*/
+                Check(_x);
         }
         
         private static (int, int) ReadFile(string source)
@@ -74,7 +65,8 @@ namespace Lab6
                 {
                     _a.SetElement(i, j, values[j]);
                 }
-                _freeVector.SetElement(i, 0, n);
+                
+                _freeVector.SetElement(i, 0, values[n]);
             }
 
             return result;
@@ -83,9 +75,9 @@ namespace Lab6
         private static void ShowMatrix(Matrix matrix)
         {
             Console.WriteLine("---------------");
-            for (int i = 0; i < matrix.GetMatrixColumnLength(); i++)
+            for (int i = 0; i < matrix.GetColumnLength(); i++)
             {
-                for (int j = 0; j < matrix.GetMatrixRowLength(); j++)
+                for (int j = 0; j < matrix.GetRowLength(); j++)
                 {
                     Console.Write(matrix.GetElement(i,j) + " ");
                 }
@@ -116,15 +108,8 @@ namespace Lab6
             ShowMatrix(_b);
             ShowMatrix(_c);
         }
-        private static void Check(Matrix x)
-        {
-            Matrix result = MultiplyMatrices(_a, x);
-            
-            Console.WriteLine("Check");
-            ShowMatrix(result, result.GetMatrixColumnLength(), 1);
-        }
-
-        static void ShowResultMatrix(Matrix result, int n)
+        
+        private static void ShowResultMatrix(Matrix result, int n)
         {
             Console.WriteLine("Result: ");
             for(int i = 0; i < n; i++)
@@ -132,17 +117,27 @@ namespace Lab6
                 Console.WriteLine("x" + (i + 1) + "= " + result.GetElement(i, 0));
             }
         }
+        
+        private static void Check(Matrix x)
+        {
+            Matrix result = MatrixExtesion.MultiplyMatrices(_a, x);
+            
+            Console.WriteLine("Check");
+            ShowMatrix(result, result.GetColumnLength(), 1);
+        }
+
+        
         private static bool CheckAccuracy(Matrix matrix)
         {
-            if(matrix.GetMatrixColumnLength() != matrix.GetMatrixRowLength())
+            if(matrix.GetColumnLength() != matrix.GetRowLength())
                 return false;
             
-            var test = ConvertToUpperTriangular(matrix);
+            var test = MatrixExtesion.ConvertToUpperTriangular(matrix);
             
             ShowMatrix(test);
             
             double e = 1;
-            for(int i  = 0; i < test.GetMatrixColumnLength(); i++)
+            for(int i  = 0; i < test.GetColumnLength(); i++)
             {
                 e *= test.GetElement(i, i);  
             }
