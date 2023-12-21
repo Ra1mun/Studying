@@ -8,37 +8,64 @@ namespace Lab6
 {
     internal class Program
     {
-        private static Matrix _a;
-        private static Matrix _freeVector;
-        private static Matrix _b;
-        private static Matrix _c;
-        private static Matrix _x;
 
         public static void Main(string[] args)
         {
-            var matrixLength = ReadFile("data.txt");
-            ShowMatrix(_a);
-            ShowMatrix(_freeVector);
-            _b = MatrixExtesion.MatrixDecompos2(_a);
-            ShowMatrix(_b);
-            _c = MatrixExtesion.MatrixTranspose(_b);
-            ShowMatrix(_c);
+            var matrixLength = ReadFile("data.txt", out Matrix a, out Matrix b, out Matrix c, out Matrix freeVector);
+            ShowMatrix(a);
+            ShowMatrix(freeVector);
+            if (CheckAccuracy(a))
+            {
+                MatrixExtesion.MatrixDecompos(a, out b, out c);
+                ShowMatrix(b);
+                ShowMatrix(c);
 
-            var y = MatrixExtesion.GausReversForY(_b.GetArrayMatrix(), _freeVector.GetArrayMatrix(), matrixLength.Item1);
-            _x = MatrixExtesion.GausReversForX(_c.GetArrayMatrix(), y.GetArrayMatrix(), matrixLength.Item1);
-            
-            ShowResultMatrix(_x, matrixLength.Item1);
-            
-            if(_x!=null)
-                Check(_x);
+                var y = MatrixExtesion.GausReversForY(b.GetArrayMatrix(), freeVector.GetArrayMatrix(), matrixLength.Item1);
+                var x = MatrixExtesion.GausReversForX(c.GetArrayMatrix(), y.GetArrayMatrix(), matrixLength.Item1);
+
+                ShowResultMatrix(x, matrixLength.Item1);
+
+                if (x != null)
+                    Check(x, a);
+
+                var iters1 = a.Iteration;
+                a.Iteration = 0;
+
+                Console.WriteLine("Метод квадртаных корней");
+                b = MatrixExtesion.MatrixDecompos2(a);
+                ShowMatrix(b);
+                c = MatrixExtesion.MatrixTranspose(b);
+                ShowMatrix(c);
+
+
+                var det = MatrixExtesion.Determinant(a);
+                Console.WriteLine(det);
+
+                if(det != 0)
+                {
+                    var y1 = MatrixExtesion.GausReversForY(c.GetArrayMatrix(), freeVector.GetArrayMatrix(), matrixLength.Item1);
+                    var x1 = MatrixExtesion.GausReversForX(b.GetArrayMatrix(), y1.GetArrayMatrix(), matrixLength.Item1);
+
+                    Console.WriteLine("Result");
+                    ShowMatrix(x1);
+                    Console.WriteLine($"Количество итераций Метода Халецкого: " + iters1);
+                    Console.WriteLine($"Количество итераций Метода квадратных корней: " + a.Iteration);
+                }
+                
+            }
+            Console.ReadLine();
         }
         
-        private static (int, int) ReadFile(string source)
+        private static (int, int) ReadFile(string source, out Matrix matrixA, out Matrix matrixB, out Matrix matrixC, out Matrix freeVector)
         {
             var infile = new StreamReader(source);
             var line = infile.ReadLine();
             if (line == null)
             {
+                matrixA = new Matrix();
+                matrixB = new Matrix();
+                matrixC = new Matrix();
+                freeVector = new Matrix();
                 return (0, 0);
             }
             
@@ -47,10 +74,10 @@ namespace Lab6
             var m = (int)nums[1];
             
             (int, int) result = (n, m);
-            _a = new Matrix(n, m);
-            _b = new Matrix(n, m);
-            _c = new Matrix(n, m);
-            _freeVector = new Matrix(n, 1);
+            matrixA = new Matrix(n, m);
+            matrixB = new Matrix(n, m);
+            matrixC = new Matrix(n, m);
+            freeVector = new Matrix(n, 1);
             for (int i = 0; i < n; i++)
             {
                 var str = infile.ReadLine();
@@ -63,10 +90,10 @@ namespace Lab6
                 
                 for (int j = 0; j < m; j++)
                 {
-                    _a.SetElement(i, j, values[j]);
+                    matrixA.SetElement(i, j, values[j]);
                 }
                 
-                _freeVector.SetElement(i, 0, values[n]);
+                freeVector.SetElement(i, 0, values[n]);
             }
 
             return result;
@@ -101,13 +128,7 @@ namespace Lab6
             }
             Console.WriteLine("---------------");
         }
-        
-        private static void ShowMatrices()
-        {
-            ShowMatrix(_a);
-            ShowMatrix(_b);
-            ShowMatrix(_c);
-        }
+       
         
         private static void ShowResultMatrix(Matrix result, int n)
         {
@@ -118,15 +139,48 @@ namespace Lab6
             }
         }
         
-        private static void Check(Matrix x)
+        private static bool Check(Matrix x, Matrix matrixA)
         {
-            Matrix result = MatrixExtesion.MultiplyMatrices(_a, x);
-            
+            if (matrixA.GetRowLength() != x.GetColumnLength())
+            {
+                return false;
+            }
+
+            var aColumnLength = matrixA.GetColumnLength();
+            var aRowLength = matrixA.GetRowLength();
+
+            var result = new double[aColumnLength];
+
+
+            for (int i = 0; i < aColumnLength; i++)
+            {
+                double element = 0;
+                for (int j = 0; j < aRowLength; j++)
+                {
+
+                    element += matrixA.GetElement(i, j) * x.GetElement(j, 1);
+                }
+                result[i] = element;
+            }
+
+            for (int i = 0; i < aColumnLength; i++)
+            {
+                if (!IsClose(result[i], x.GetElement(i, 1)))
+                {
+                    return false;
+                }
+                Console.WriteLine(result[i]);
+            }
             Console.WriteLine("Check");
-            ShowMatrix(result, result.GetColumnLength(), 1);
+            return true;
+            
+        }
+        private static bool IsClose(double a, double b, double tolerance = 1e-8)
+        {
+            return Math.Abs(a - b) < tolerance;
         }
 
-        
+
         private static bool CheckAccuracy(Matrix matrix)
         {
             if(matrix.GetColumnLength() != matrix.GetRowLength())
@@ -144,6 +198,21 @@ namespace Lab6
             Console.WriteLine(e);
             
             return e != 0;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
