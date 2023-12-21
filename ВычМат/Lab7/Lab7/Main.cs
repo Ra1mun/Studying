@@ -8,12 +8,29 @@ namespace Lab7
     internal class Program
     {
         private static int _size;
+        private static double[,] _identity;
         public static void Main(string[] args)
         {
             var matrixA = ReadFile("data.txt");
-
+            var matrixAt = MatrixTranspose(matrixA);
+            matrixA = MultiplyMatrix(matrixA, matrixAt);
+            var matrixS = _identity;
+            var f = matrixA;
+            for (int i = 0; i < _size - 1; i++)
+            {
+                var matrixM = _identity;
+                for (int j = 0; j < _size; j++)
+                {
+                    matrixM[_size - 2 - i, j] = f[_size - 1 - i, j];
+                }
+                f = MultiplyMatrix(matrixM, f);
+                f = MultiplyMatrix(f, matrixM);
+                matrixS = MultiplyMatrix(matrixS, InverseMatrix(matrixM));
+            }
             
-
+            Console.WriteLine("Преобразованная матрица:");
+            ShowMatrix(matrixS);
+            
             Console.ReadLine();
             
         }
@@ -28,6 +45,11 @@ namespace Lab7
             
             var nums = line.Split().Select(Convert.ToDouble).ToArray();
             _size = (int)nums[0];
+            _identity = new double[_size, _size];
+            for (int i = 0; i < _size; i++)
+            {
+                _identity[i, i] = 1;
+            }
             var result = new double[_size, _size];
             for (int i = 0; i < _size; i++)
             {
@@ -49,9 +71,22 @@ namespace Lab7
             return result;
         }
 
-        private static bool Check(Matrix matrixA, double e = e-10)
+        private static void ShowMatrix(double[,] matrix)
         {
-            
+            int size = (int) Math.Sqrt(matrix.Length);
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < _size; j++)
+                {
+                    Console.Write(matrix[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+        
+        private static bool Check(double[ , ] matrixA, double e = 1e-8)
+        {
+            return false;
         }
     }
 }
