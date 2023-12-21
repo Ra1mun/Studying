@@ -71,7 +71,7 @@ namespace Lab6
                         for (int j = k; j < cols; j++)
                         {
                             result.SetElement(i, j, 
-                                result.GetElement(i, j) - (factor * result.GetElement(k,j)));
+                                    result.GetElement(i, j) - (factor * result.GetElement(k,j)));
                         }
                     }
                     else
@@ -85,31 +85,6 @@ namespace Lab6
             return result;
         }
         
-        public static Matrix MultiplyMatrices(Matrix matrixA, Matrix matrixB)
-        {
-            if (matrixA.GetRowLength() != matrixB.GetColumnLength())
-            {
-                return null;
-            }
-            
-            var aColumnLength = matrixA.GetColumnLength();
-            var aRowLength = matrixA.GetRowLength();
-            var bRowLength = matrixB.GetRowLength();
-
-            var result = new Matrix(aColumnLength, bRowLength);
-            for (int i = 0; i < aColumnLength; i++)
-            {
-                for (int j = 0; j < bRowLength; j++)
-                {
-                    for (int k = 0; k < aRowLength; k++)
-                    {
-                        var element = result.GetElement(i, j) + matrixA.GetElement(i, k) * matrixB.GetElement(k, j);
-                        result.SetElement(i, j, element);
-                    }
-                }
-            }
-            return result;
-        }
         
         public static Matrix MatrixDecompos2(Matrix matrix)
         {
@@ -118,30 +93,30 @@ namespace Lab6
             var result = new Matrix(n, m);
 
             result.SetElement(0, 0, Math.Sqrt(matrix.GetElement(0, 0)));
-            
+
             double temp = 0;
-            for(int i = 0;i < n; i++)
+            for (int i = 0; i < n; i++)
             {
-                for(int j = 0;j < m; j++)
+
+                for (int j = 0; j < m; j++)
                 {
-                    if(j > 1)
+                    if (j > 1)
                     {
                         result.SetElement(1, j, matrix.GetElement(1, j) / result.GetElement(0, 0));
                     }
-                    
-                    if(i>0 && i<n)
+
+                    if (i > 0 && i < n)
                     {
                         temp = 0;
-                        for(int k = 0;k < i; k++)
+                        for (int k = 0; k < i; k++)
                         {
-                            matrix.Iteration++;
                             temp += Math.Pow(result.GetElement(k, i), 2);
+                            matrix.Iteration++;
                         }
-                        
                         result.SetElement(i, i, Math.Sqrt(matrix.GetElement(i, i) - temp));
                     }
-                    
-                    if(i<j)
+
+                    if (i < j)
                     {
                         for (int k = 0; k < i; k++)
                         {
@@ -150,38 +125,124 @@ namespace Lab6
                         }
                         result.SetElement(i, j, (matrix.GetElement(i, j) - temp) / result.GetElement(i, i));
                     }
-                    
-                    if(i>j)
+
+                    if (i > j)
                     {
                         result.SetElement(i, j, 0);
                     }
-                    
+
                     matrix.Iteration++;
                 }
             }
+
             return result;
+        }
+
+        public static void MatrixDecompos(Matrix matrix, out Matrix lower, out Matrix upper)
+        {
+            int n = matrix.GetColumnLength();
+
+            lower = new Matrix(n);
+            upper = new Matrix(n);
+
+            for (int i = 0, j = n - 1; i < n; i++, j--)
+            {
+                for (int l = 0; l < i + 1; l++)
+                {
+                    lower.SetElement(l, 0 , matrix.GetElement(l, 0));
+                    if (i > 0)
+                    {
+                        double sum = 0;
+                        for (int k = 0; k < l; k++)
+                        {
+                            sum = lower.GetElement(i, k) * upper.GetElement(k, l) + sum;
+                        }
+                        lower.SetElement(i, l, matrix.GetElement(i, l) - sum);
+                        sum = 0;
+                    }
+                    matrix.Iteration++;
+                }
+                for (int l = 0; l < j + 1; l++)
+                {
+                    upper.SetElement(0, l, matrix.GetElement(0, l) / lower.GetElement(0, 0));
+                    if (j < n - 1)
+                    {
+                        for (int m = n - 1; m > i - 1; m--)
+                        {
+                            double sum = 0;
+                            for (int k = 0; k < i; k++)
+                            {
+                                sum = lower.GetElement(i, k) * upper.GetElement(k, m) + sum;
+                            }
+                            upper.SetElement(i, m, (1 / lower.GetElement(i, i)) * (matrix.GetElement(i, m) - sum));
+                            matrix.Iteration++;
+                        }
+                    }
+                }
+            }
         }
         
         public static Matrix MatrixTranspose(Matrix matrix)
         {
             var columnLength = matrix.GetColumnLength();
             var rowLength = matrix.GetRowLength();
-            
+
             if (columnLength != rowLength)
             {
                 return null;
             }
 
             var result = new Matrix(columnLength, rowLength);
-            for(int i = 0; i < columnLength; i++)
+            for (int i = 0; i < columnLength; i++)
             {
-                for(int j = 0; j < rowLength; j++)
+                for (int j = 0; j < rowLength; j++)
                 {
-                    result.SetElement(i, j, matrix.GetElement(j, i)); 
+                    result.SetElement(i, j, matrix.GetElement(j, i));
                 }
             }
 
             return result;
+        }
+
+        public static double Determinant(Matrix matrix)
+        {
+            int n = (int)Math.Sqrt(matrix.GetColumnLength());
+            double det = 0;
+
+            if (n == 1)
+            {
+                det = matrix.GetElement(0, 0);
+            }
+            else if (n == 2)
+            {
+                det = matrix.GetElement(0,0) * matrix.GetElement(1,1) - matrix.GetElement(0,1) * matrix.GetElement(1,0);
+            }
+            else
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    var subMatrix = new Matrix(n - 1, n - 1);
+
+                    for (int j = 1; j < n; j++)
+                    {
+                        for (int k = 0; k < n; k++)
+                        {
+                            if (k < i)
+                            {
+                                subMatrix.SetElement(j - 1, k, matrix.GetElement(j, k));
+                            }
+                            else if (k > i)
+                            {
+                                subMatrix.SetElement(j - 1, k - 1, matrix.GetElement(j, k));
+                            }
+                        }
+                    }
+
+                    det += Math.Pow(-1, i) * matrix.GetElement(0, i) * Determinant(subMatrix);
+                }
+            }
+
+            return det;
         }
     }
 }
