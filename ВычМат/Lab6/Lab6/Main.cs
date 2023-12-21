@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Net.Mime;
-using static Lab6.Matrix;
 
 namespace Lab6
 {
@@ -19,6 +17,8 @@ namespace Lab6
             var matrixLength = ReadFile("data.txt");
             ShowMatrix(_a);
             ShowMatrix(_freeVector);
+            if (!CheckAccuracy(_a))
+                return;
             _b = MatrixExtesion.MatrixDecompos2(_a);
             ShowMatrix(_b);
             _c = MatrixExtesion.MatrixTranspose(_b);
@@ -28,9 +28,11 @@ namespace Lab6
             _x = MatrixExtesion.GausReversForX(_c.GetArrayMatrix(), y.GetArrayMatrix(), matrixLength.Item1);
             
             ShowResultMatrix(_x, matrixLength.Item1);
-            
-            if(_x!=null)
+
+            if (_x != null)
                 Check(_x);
+            SpeedAccuracy();
+            Console.ReadLine();
         }
         
         private static (int, int) ReadFile(string source)
@@ -139,11 +141,17 @@ namespace Lab6
             double e = 1;
             for(int i  = 0; i < test.GetColumnLength(); i++)
             {
-                e *= test.GetElement(i, i);  
+                if(test.GetElement(i, i) != 0)
+                    e *= test.GetElement(i, i);  
             }
             Console.WriteLine(e);
             
             return e != 0;
+        }
+
+        private static void SpeedAccuracy()
+        {
+            Console.WriteLine("Скорость сходимости = " + _a.Iteration + _b.Iteration + _c.Iteration + _x.Iteration + _freeVector.Iteration);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace Lab6
 {
     public class Matrix
     {
-        public int Iteration { get; set; }
+        public int Iteration = 0;
         
         private double[][] _matrix;
         private readonly int _m;

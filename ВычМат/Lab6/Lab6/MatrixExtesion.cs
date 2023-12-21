@@ -103,8 +103,7 @@ namespace Lab6
                 {
                     for (int k = 0; k < aRowLength; k++)
                     {
-                        double element;
-                        element = result.GetElement(i, j) + matrixA.GetElement(i, k) * matrixB.GetElement(k, j);
+                        var element = result.GetElement(i, j) + matrixA.GetElement(i, k) * matrixB.GetElement(k, j);
                         result.SetElement(i, j, element);
                     }
                 }
@@ -135,9 +134,10 @@ namespace Lab6
                         temp = 0;
                         for(int k = 0;k < i; k++)
                         {
-                            temp += Math.Pow(result.GetElement(k, i), 2);
                             matrix.Iteration++;
+                            temp += Math.Pow(result.GetElement(k, i), 2);
                         }
+                        
                         result.SetElement(i, i, Math.Sqrt(matrix.GetElement(i, i) - temp));
                     }
                     

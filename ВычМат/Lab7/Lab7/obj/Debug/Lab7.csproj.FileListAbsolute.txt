@@ -1,0 +1,6 @@
+D:\TSU\Studying\ВычМат\Lab7\Lab7\bin\Debug\Lab7.exe
+D:\TSU\Studying\ВычМат\Lab7\Lab7\bin\Debug\Lab7.pdb
+D:\TSU\Studying\ВычМат\Lab7\Lab7\obj\Debug\Lab7.csproj.AssemblyReference.cache
+D:\TSU\Studying\ВычМат\Lab7\Lab7\obj\Debug\Lab7.csproj.CoreCompileInputs.cache
+D:\TSU\Studying\ВычМат\Lab7\Lab7\obj\Debug\Lab7.exe
+D:\TSU\Studying\ВычМат\Lab7\Lab7\obj\Debug\Lab7.pdb
