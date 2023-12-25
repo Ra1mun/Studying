@@ -157,5 +157,7 @@ namespace Lab7
 
             return adjugate;
         }
+
+        
     }
 }

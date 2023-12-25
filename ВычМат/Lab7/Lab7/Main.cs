@@ -15,18 +15,6 @@ namespace Lab7
             var matrixAt = MatrixTranspose(matrixA);
             matrixA = MultiplyMatrix(matrixA, matrixAt);
             var matrixS = _identity;
-            var f = matrixA;
-            for (int i = 0; i < _size - 1; i++)
-            {
-                var matrixM = _identity;
-                for (int j = 0; j < _size; j++)
-                {
-                    matrixM[_size - 2 - i, j] = f[_size - 1 - i, j];
-                }
-                f = MultiplyMatrix(matrixM, f);
-                f = MultiplyMatrix(f, matrixM);
-                matrixS = MultiplyMatrix(matrixS, InverseMatrix(matrixM));
-            }
             
             Console.WriteLine("Преобразованная матрица:");
             ShowMatrix(matrixS);
