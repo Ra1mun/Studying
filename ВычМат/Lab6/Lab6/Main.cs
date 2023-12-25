@@ -11,12 +11,13 @@ namespace Lab6
 
         public static void Main(string[] args)
         {
-            var matrixLength = ReadFile("data.txt", out Matrix a, out Matrix b, out Matrix c, out Matrix freeVector);
+            var matrixLength = ReadFile("data.txt", out Matrix a, out Matrix freeVector);
             ShowMatrix(a);
             ShowMatrix(freeVector);
-            if (CheckAccuracy(a))
+            var det = MatrixExtesion.Determinant(a);
+            if (CheckAccuracy(a) && det != 0)
             {
-                MatrixExtesion.MatrixDecompos(a, out b, out c);
+                MatrixExtesion.MatrixDecompos(a, out Matrix b, out Matrix c);
                 ShowMatrix(b);
                 ShowMatrix(c);
 
@@ -38,33 +39,34 @@ namespace Lab6
                 ShowMatrix(c);
 
 
-                var det = MatrixExtesion.Determinant(a);
+                
                 Console.WriteLine(det);
 
-                if(det != 0)
-                {
-                    var y1 = MatrixExtesion.GausReversForY(c.GetArrayMatrix(), freeVector.GetArrayMatrix(), matrixLength.Item1);
-                    var x1 = MatrixExtesion.GausReversForX(b.GetArrayMatrix(), y1.GetArrayMatrix(), matrixLength.Item1);
 
-                    Console.WriteLine("Result");
-                    ShowMatrix(x1);
-                    Console.WriteLine($"Количество итераций Метода Халецкого: " + iters1);
-                    Console.WriteLine($"Количество итераций Метода квадратных корней: " + a.Iteration);
-                }
+                var y1 = MatrixExtesion.GausReversForY(c.GetArrayMatrix(), freeVector.GetArrayMatrix(), matrixLength.Item1);
+                var x1 = MatrixExtesion.GausReversForX(b.GetArrayMatrix(), y1.GetArrayMatrix(), matrixLength.Item1);
+
+                Console.WriteLine("Result");
+                ShowResultMatrix(x1, matrixLength.Item1);
+                Console.WriteLine($"Количество итераций Метода Халецкого: " + iters1);
+                Console.WriteLine($"Количество итераций Метода квадратных корней: " + a.Iteration);
                 
+                
+            }
+            else
+            {
+                Console.WriteLine("Невозможно найти решение");
             }
             Console.ReadLine();
         }
         
-        private static (int, int) ReadFile(string source, out Matrix matrixA, out Matrix matrixB, out Matrix matrixC, out Matrix freeVector)
+        private static (int, int) ReadFile(string source, out Matrix matrixA, out Matrix freeVector)
         {
             var infile = new StreamReader(source);
             var line = infile.ReadLine();
             if (line == null)
             {
                 matrixA = new Matrix();
-                matrixB = new Matrix();
-                matrixC = new Matrix();
                 freeVector = new Matrix();
                 return (0, 0);
             }
@@ -75,8 +77,6 @@ namespace Lab6
             
             (int, int) result = (n, m);
             matrixA = new Matrix(n, m);
-            matrixB = new Matrix(n, m);
-            matrixC = new Matrix(n, m);
             freeVector = new Matrix(n, 1);
             for (int i = 0; i < n; i++)
             {
@@ -99,6 +99,8 @@ namespace Lab6
             return result;
         }
         
+
+
         private static void ShowMatrix(Matrix matrix)
         {
             Console.WriteLine("---------------");
@@ -183,20 +185,24 @@ namespace Lab6
 
         private static bool CheckAccuracy(Matrix matrix)
         {
+            
             if(matrix.GetColumnLength() != matrix.GetRowLength())
                 return false;
-            
-            var test = MatrixExtesion.ConvertToUpperTriangular(matrix);
-            
-            ShowMatrix(test);
-            
-            double e = 1;
-            for(int i  = 0; i < test.GetColumnLength(); i++)
+            double tolerance = 1e-8;
+            for (int i = 0; i < matrix.GetColumnLength(); i++)
             {
-                e *= test.GetElement(i, i);  
+                if (Math.Abs(MatrixExtesion.Determinant(MatrixExtesion.GetMinor(matrix, i, i))) < tolerance)
+                    return false;
             }
-            Console.WriteLine(e);
-            
+
+            var test = MatrixExtesion.ConvertToUpperTriangular(matrix);
+
+            double e = 1;
+            for (int i = 0; i < test.GetColumnLength(); i++)
+            {
+                e *= test.GetElement(i, i);
+            }
+
             return e != 0;
         }
 

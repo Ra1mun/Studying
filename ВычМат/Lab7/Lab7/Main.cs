@@ -8,17 +8,44 @@ namespace Lab7
     internal class Program
     {
         private static int _size;
-        private static double[,] _identity;
         public static void Main(string[] args)
         {
             var matrixA = ReadFile("data.txt");
-            var matrixAt = MatrixTranspose(matrixA);
-            matrixA = MultiplyMatrix(matrixA, matrixAt);
-            var matrixS = _identity;
-            
+            var matrixS = Identity(_size);
+            var f = matrixA;
+            for (int i = 1; i < _size; i++)
+            {
+                var element = f[_size - i, _size - 1 - i];
+                if (element == 0)
+                {
+                    continue;
+                }
+
+                var matrixM = Identity(_size);
+                
+                for (int j = 0; j < _size; j++)
+                {
+                    if(j == _size - 1 - i)
+                    {
+                        matrixM[_size - 1 - i, j] = 1 / element;
+                    }
+                    else
+                    {
+                        matrixM[_size - 1 - i, j] = (-1)* (f[_size - i, j] / element);   
+                    }
+                    
+                }
+                ShowMatrix(matrixM);
+                f = MultiplyMatrix(InverseMatrix(matrixM), f);
+                f = MultiplyMatrix(f, matrixM);
+                Console.WriteLine("---------");
+                matrixS = MultiplyMatrix(matrixS, matrixM);
+            }
+
             Console.WriteLine("Преобразованная матрица:");
-            ShowMatrix(matrixS);
-            
+            var test = MultiplyMatrix(InverseMatrix(matrixS), matrixA);
+            test = MultiplyMatrix(test, matrixS);
+            ShowMatrix(test);
             Console.ReadLine();
             
         }
@@ -33,11 +60,6 @@ namespace Lab7
             
             var nums = line.Split().Select(Convert.ToDouble).ToArray();
             _size = (int)nums[0];
-            _identity = new double[_size, _size];
-            for (int i = 0; i < _size; i++)
-            {
-                _identity[i, i] = 1;
-            }
             var result = new double[_size, _size];
             for (int i = 0; i < _size; i++)
             {
