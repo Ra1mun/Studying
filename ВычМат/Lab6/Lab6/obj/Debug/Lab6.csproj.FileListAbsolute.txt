@@ -10,3 +10,9 @@ C:\Studying\ВычМат\Lab6\Lab6\Lab6\obj\Debug\Lab6.csproj.AssemblyReference.
 C:\Studying\ВычМат\Lab6\Lab6\Lab6\obj\Debug\Lab6.csproj.CoreCompileInputs.cache
 C:\Studying\ВычМат\Lab6\Lab6\Lab6\obj\Debug\Lab6.exe
 C:\Studying\ВычМат\Lab6\Lab6\Lab6\obj\Debug\Lab6.pdb
+C:\Studying\ВычМат\Lab6\Lab6\bin\Debug\Lab6.exe
+C:\Studying\ВычМат\Lab6\Lab6\bin\Debug\Lab6.pdb
+C:\Studying\ВычМат\Lab6\Lab6\obj\Debug\Lab6.csproj.AssemblyReference.cache
+C:\Studying\ВычМат\Lab6\Lab6\obj\Debug\Lab6.csproj.CoreCompileInputs.cache
+C:\Studying\ВычМат\Lab6\Lab6\obj\Debug\Lab6.exe
+C:\Studying\ВычМат\Lab6\Lab6\obj\Debug\Lab6.pdb

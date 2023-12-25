@@ -244,5 +244,29 @@ namespace Lab6
 
             return det;
         }
+        public static Matrix GetMinor(Matrix matrix, int column, int row)
+        {
+            int n = matrix.GetColumnLength();
+            var minor = new Matrix(n - 1, n - 1);
+
+            for (int i = 0, k = 0; i < n; i++)
+            {
+                if (i == row)
+                    continue;
+
+                for (int j = 0, l = 0; j < n; j++)
+                {
+                    if (j == column)
+                        continue;
+
+                    minor.SetElement(k, l, matrix.GetElement(i, j));
+                    l++;
+                }
+
+                k++;
+            }
+
+            return minor;
+        }
     }
 }
